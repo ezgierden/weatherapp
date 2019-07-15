@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var weatherIcon = [UIImage(named: "cloudy"), UIImage(named: "few clouds & sun")]
+    var weatherIcon = [UIImage(named: "cloudy"), UIImage(named: "few clouds & sun"), UIImage(named: "cloudy"), UIImage(named: "few clouds & sun"), UIImage(named: "cloudy"), UIImage(named: "few clouds & sun"), UIImage(named: "cloudy"), UIImage(named: "few clouds & sun"), UIImage(named: "cloudy"), UIImage(named: "few clouds & sun")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath) as! WeatherForHoursOfTheDayCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherForHoursOfTheDayCollectionViewCell", for: indexPath) as! WeatherForHoursOfTheDayCollectionViewCell
         
         cell.iconCellImageView.image = weatherIcon[indexPath.row]
         

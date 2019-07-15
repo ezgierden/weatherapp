@@ -33,16 +33,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="degreeAtTheMoment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXa-t0-9Uw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="degreeAtTheMoment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXa-t0-9Uw">
                                 <rect key="frame" x="116" y="194" width="89" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-U1-SGi">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYs-U1-SGi">
                                 <rect key="frame" x="213" y="195" width="94" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="dateAndTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-I3-43C">
                                 <rect key="frame" x="20" y="326" width="103" height="37"/>
@@ -140,6 +138,8 @@
                             <constraint firstItem="3uP-fo-PaG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ly8-J8-jcA"/>
                             <constraint firstItem="BA5-ic-PK2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NuP-1x-KSD"/>
                             <constraint firstItem="n3O-93-Ikh" firstAttribute="leading" secondItem="BA5-ic-PK2" secondAttribute="trailing" constant="90" id="cYU-yE-ZRQ"/>
+                            <constraint firstItem="gYs-U1-SGi" firstAttribute="top" secondItem="3uP-fo-PaG" secondAttribute="bottom" constant="9" id="mIc-D0-jiy"/>
+                            <constraint firstItem="dzu-I3-43C" firstAttribute="top" secondItem="rXa-t0-9Uw" secondAttribute="bottom" constant="87" id="pQw-yb-SyO"/>
                             <constraint firstItem="BA5-ic-PK2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="u7h-eZ-ZUU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
