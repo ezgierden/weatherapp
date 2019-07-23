@@ -10,6 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
+    @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
+    @IBOutlet weak var dateAndTimeLabel: UILabel!
+    
+    
     @IBOutlet weak var collView: UICollectionView!
     var dailyWeatherArray: [Weather] = []
     var hourlyWeatherArray: [Weather] = []
@@ -21,7 +26,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         Weather.forecast(withLocation: "42.3601,-71.0589") { (dailyResults:[Weather], hourlyResults:[Weather]) in
             self.dailyWeatherArray = dailyResults
             self.hourlyWeatherArray = Array(hourlyResults[0...23])
-            self.collView?.reloadData()
+            
+            DispatchQueue.main.async {
+                self.highestTempOfTheDayLabel.text = String(dailyResults[0].temperatureMax!)
+                self.lowestTempOfTheDayLabel.text = String(dailyResults[0].temperatureMin!)
+                self.collView?.reloadData()
+            }
         }
     }
 
