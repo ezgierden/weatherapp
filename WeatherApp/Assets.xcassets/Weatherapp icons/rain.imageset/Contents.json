@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "rainy with dark clouds.png",
+      "filename" : "rain.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "rainy with dark clouds-1.png",
+      "filename" : "rain-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "rainy with dark clouds-2.png",
+      "filename" : "rain-2.png",
       "scale" : "3x"
     }
   ],

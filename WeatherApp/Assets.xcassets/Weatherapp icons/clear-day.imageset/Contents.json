@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "thunder.png",
+      "filename" : "clear-day.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "thunder-1.png",
+      "filename" : "clear-day-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "thunder-2.png",
+      "filename" : "clear-day-2.png",
       "scale" : "3x"
     }
   ],

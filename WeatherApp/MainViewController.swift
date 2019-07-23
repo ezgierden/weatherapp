@@ -42,6 +42,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.timeCellLabel.text = time
         
+        cell.iconCellImageView.image = UIImage(named: hourlyWeatherArray[indexPath.row].icon)
+        
         return cell
     }
 

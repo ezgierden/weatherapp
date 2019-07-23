@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "showers.png",
+      "filename" : "partly-cloudy-night.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "showers-1.png",
+      "filename" : "partly-cloudy-night-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "showers-2.png",
+      "filename" : "partly-cloudy-night-2.png",
       "scale" : "3x"
     }
   ],
