@@ -30,10 +30,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             DispatchQueue.main.async {
                 self.highestTempOfTheDayLabel.text = String(dailyResults[0].temperatureMax!)
                 self.lowestTempOfTheDayLabel.text = String(dailyResults[0].temperatureMin!)
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+                dateFormatter.dateFormat = "MMMM,dd"
+                let currentDate = dateFormatter.string(from: self.dailyWeatherArray[0].time)
+                self.dateAndTimeLabel.text = currentDate
+                
                 self.collView?.reloadData()
             }
         }
     }
+    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hourlyWeatherArray.count
@@ -45,10 +53,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         cell.degreeCellLabel.text = String(hourlyWeatherArray[indexPath.row].temperature!)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        dateFormatter.dateFormat = "HH"
-        let time = dateFormatter.string(from: hourlyWeatherArray[indexPath.row].time)
+        let hourlyFormatter = DateFormatter()
+        hourlyFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        hourlyFormatter.dateFormat = "HH"
+        let time = hourlyFormatter.string(from: hourlyWeatherArray[indexPath.row].time)
         
         cell.timeCellLabel.text = time
         
