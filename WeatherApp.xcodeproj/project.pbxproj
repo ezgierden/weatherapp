@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */; };
+		3B53C22822ECDC3E00D58596 /* Weather16Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B53C22722ECDC3E00D58596 /* Weather16Days.swift */; };
 		3B69070922CF93860050D3CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070822CF93860050D3CD /* AppDelegate.swift */; };
 		3B69070B22CF93860050D3CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070A22CF93860050D3CD /* MainViewController.swift */; };
 		3B69070E22CF93860050D3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B69070C22CF93860050D3CD /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForHoursOfTheDayCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B53C22722ECDC3E00D58596 /* Weather16Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather16Days.swift; sourceTree = "<group>"; };
 		3B69070522CF93860050D3CD /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B69070822CF93860050D3CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B69070A22CF93860050D3CD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				3B69070822CF93860050D3CD /* AppDelegate.swift */,
+				3B53C22722ECDC3E00D58596 /* Weather16Days.swift */,
 				3BFFC1E422E5D9D500F743A8 /* Weather.swift */,
 				3B69070A22CF93860050D3CD /* MainViewController.swift */,
 				3B69070C22CF93860050D3CD /* Main.storyboard */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BFFC1E522E5D9D500F743A8 /* Weather.swift in Sources */,
+				3B53C22822ECDC3E00D58596 /* Weather16Days.swift in Sources */,
 				3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */,
 				3B69070B22CF93860050D3CD /* MainViewController.swift in Sources */,
 				3B69070922CF93860050D3CD /* AppDelegate.swift in Sources */,

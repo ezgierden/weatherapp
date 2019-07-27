@@ -13,15 +13,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
-    
-    
     @IBOutlet weak var collView: UICollectionView!
+    
     var dailyWeatherArray: [Weather] = []
     var hourlyWeatherArray: [Weather] = []
+    var forecastArray16Days: [Weather16Days] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (forecast16DaysResults:[Weather16Days]) in
+            self.forecastArray16Days = forecast16DaysResults
+            
+            print(forecast16DaysResults)
+        }
         
         Weather.forecast(withLocation: "42.3601,-71.0589") { (dailyResults:[Weather], hourlyResults:[Weather]) in
             self.dailyWeatherArray = dailyResults
