@@ -13,6 +13,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
+    
     @IBOutlet weak var collView: UICollectionView!
     
     var dailyWeatherArray: [Weather] = []
@@ -23,7 +24,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (forecast16DaysResults:[Weather16Days]) in
+    Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (forecast16DaysResults:[Weather16Days]) in
             self.forecastArray16Days = forecast16DaysResults
             
             print(forecast16DaysResults)
@@ -39,7 +40,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-                dateFormatter.dateFormat = "MMMM,dd"
+                dateFormatter.dateFormat = "MMMM, dd"
                 let currentDate = dateFormatter.string(from: self.dailyWeatherArray[0].time)
                 self.dateAndTimeLabel.text = currentDate
                 

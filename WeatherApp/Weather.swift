@@ -21,7 +21,7 @@ struct Weather {
     enum SerializationError:Error {
         case missing(String)
         case invalid(String, Any)
-}
+    }
     
     init(json:[String:Any]) throws{
         

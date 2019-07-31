@@ -2,7 +2,7 @@
 //  Forecast16DaysTableViewController.swift
 //  WeatherApp
 //
-//  Created by Ezgi Erden on 28/07/2019.
+//  Created by Ezgi Erden on 29/07/2019.
 //  Copyright © 2019 Ezgi Erden. All rights reserved.
 //
 
@@ -10,9 +10,23 @@ import UIKit
 
 class Forecast16DaysTableViewController: UITableViewController {
 
+    @IBOutlet var Forecast16DaysTableView: UITableView!
+    
+    var forecast16DaysArray: [Weather16Days] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (forecast16DaysResults:[Weather16Days]) in
+            
+            self.forecast16DaysArray = forecast16DaysResults
+            
+            DispatchQueue.main.async {
+                
+            self.Forecast16DaysTableView?.reloadData()
+        }
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -24,29 +38,25 @@ class Forecast16DaysTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 16
+        return forecast16DaysArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Forecast16DaysItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Forecast16DaysCell", for: indexPath) as! Forecast16DaysCell
+
+        cell.maxTempCellLabel.text = String(forecast16DaysArray[indexPath.row].maxTemp)
+        cell.minTempCellLabel.text = String(forecast16DaysArray[indexPath.row].minTemp)
+        cell.dateCellLabel.text = String(forecast16DaysArray[indexPath.row].weather.code)
+        
         return cell
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

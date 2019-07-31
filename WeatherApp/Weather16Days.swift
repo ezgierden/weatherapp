@@ -13,6 +13,7 @@ struct Weather16Days {
     let maxTemp:Double
     let minTemp:Double
     let validDate:String
+    let weather:InnerWeather
     
     enum SerializationError:Error{
         
@@ -25,11 +26,17 @@ struct Weather16Days {
         guard let maxTemp = json["max_temp"] as? Double else {throw SerializationError.missing("max_temp is missing")}
         guard let minTemp = json["min_temp"] as? Double else {throw SerializationError.missing("min_temp is missing")}
         guard let validDate = json["valid_date"] as? String else {throw SerializationError.missing("valid_date is missing")}
+        guard let weather = json["weather"] as? [String:Any] else {throw SerializationError.missing("weather is missing")}
         
         self.maxTemp = maxTemp
         self.minTemp = minTemp
         self.validDate = validDate
         
+        if let weather = try? InnerWeather(json: weather){
+            self.weather = weather
+        }else{
+            throw SerializationError.missing("weather is missing")
+        }
     }
     
     static let baseApiPath = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
@@ -42,6 +49,7 @@ struct Weather16Days {
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
             
             var forecastArray16Days:[Weather16Days] = []
+           /* var weatherDataArray:[Weather16Days] = []*/
             
             if let data = data {
                 do{
@@ -59,6 +67,18 @@ struct Weather16Days {
                         }
                         
                     }
+                      /*  if let dailyWeather = jsonResponse["data"] as? [[String:Any]] {
+                            if let weatherData = dailyWeather["weather"] as? [String:Any] {
+                                for dataPoint in weatherData {
+                                    if let weatherObject = try? Weather16Days(json: dataPoint){
+                                        weatherDataArray.append(weatherObject)
+                                    }
+                                    
+                                }
+                                
+                                
+                            }
+                }*/
                 }
                 }catch{
                     print(error.localizedDescription)
