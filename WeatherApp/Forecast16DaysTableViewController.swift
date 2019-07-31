@@ -8,11 +8,14 @@
 
 import UIKit
 
-class Forecast16DaysTableViewController: UITableViewController {
+class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet var Forecast16DaysTableView: UITableView!
+    @IBOutlet weak var forecast16DaysTableView: UITableView!
+    @IBOutlet weak var locationLabel: UILabel!
     
     var forecast16DaysArray: [Weather16Days] = []
+    
+    let location:Weather16Days 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +24,10 @@ class Forecast16DaysTableViewController: UITableViewController {
             
             self.forecast16DaysArray = forecast16DaysResults
             
+            
             DispatchQueue.main.async {
-                
-            self.Forecast16DaysTableView?.reloadData()
+            self.forecast16DaysTableView?.reloadData()
+                self.locationLabel.text = Weather16Days.location
         }
         }
         
@@ -36,23 +40,30 @@ class Forecast16DaysTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return forecast16DaysArray.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Forecast16DaysCell", for: indexPath) as! Forecast16DaysCell
-
-        cell.maxTempCellLabel.text = String(forecast16DaysArray[indexPath.row].maxTemp)
-        cell.minTempCellLabel.text = String(forecast16DaysArray[indexPath.row].minTemp)
-        cell.dateCellLabel.text = String(forecast16DaysArray[indexPath.row].weather.code)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "MMMM, dd"
+        let currentDate = dateFormatter.string(from: forecast16DaysArray[indexPath.row].timeStamp)
+    
+//let currentDate = dateFormatter.string(from: self.dailyWeatherArray[0].time)
+        cell.maxTempCellLabel.text = String(forecast16DaysArray[indexPath.row].maxTemp) + "°"
+        cell.minTempCellLabel.text = String(forecast16DaysArray[indexPath.row].minTemp) + "°"
+        cell.dateCellLabel.text = currentDate
+        cell.cellBackgroundImageView.image = UIImage(named: String(forecast16DaysArray[indexPath.row].weather.code))
         
         return cell
     }

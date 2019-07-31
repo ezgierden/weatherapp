@@ -10,9 +10,11 @@ import Foundation
 
 struct Weather16Days {
     
-    let maxTemp:Double
-    let minTemp:Double
+    let maxTemp:Int
+    let minTemp:Int
     let validDate:String
+    let timeStamp:Date
+    let location:String?
     let weather:InnerWeather
     
     enum SerializationError:Error{
@@ -27,10 +29,19 @@ struct Weather16Days {
         guard let minTemp = json["min_temp"] as? Double else {throw SerializationError.missing("min_temp is missing")}
         guard let validDate = json["valid_date"] as? String else {throw SerializationError.missing("valid_date is missing")}
         guard let weather = json["weather"] as? [String:Any] else {throw SerializationError.missing("weather is missing")}
+        guard let timeStamp = json["ts"] as? Int else {throw SerializationError.missing("timeStamp is missing")}
+        let location = json["city_name"] as? String
         
-        self.maxTemp = maxTemp
-        self.minTemp = minTemp
+        self.maxTemp = Int(maxTemp)
+        self.minTemp = Int(minTemp)
         self.validDate = validDate
+        self.timeStamp = Date(timeIntervalSince1970: Double(timeStamp))
+        
+        if location != nil{
+            self.location = location
+        }else{
+            self.location = nil
+        }
         
         if let weather = try? InnerWeather(json: weather){
             self.weather = weather
@@ -38,6 +49,8 @@ struct Weather16Days {
             throw SerializationError.missing("weather is missing")
         }
     }
+    
+    
     
     static let baseApiPath = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
     

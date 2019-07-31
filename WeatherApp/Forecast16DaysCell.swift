@@ -13,6 +13,7 @@ class Forecast16DaysCell: UITableViewCell {
     @IBOutlet weak var dateCellLabel: UILabel!
     @IBOutlet weak var maxTempCellLabel: UILabel!
     @IBOutlet weak var minTempCellLabel: UILabel!
+    @IBOutlet weak var cellBackgroundImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
