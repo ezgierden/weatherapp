@@ -54,7 +54,7 @@ struct Weather16Days {
     
     static let baseApiPath = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
     
-    static func get16DaysForecast(withLatitude lat:String, withLongitude long:String, completion: @escaping ([Weather16Days]) -> ()) {
+    static func get16DaysForecast(withLatitude lat:String, withLongitude long:String, completion: @escaping (WeatherApiResponse) -> ()) {
         
         let url = baseApiPath + "&lat=" + lat + "&lon=" + long
         let request = URLRequest(url: URL(string: url)!)
@@ -62,6 +62,7 @@ struct Weather16Days {
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
             
             var forecastArray16Days:[Weather16Days] = []
+            var location:String = ""
            /* var weatherDataArray:[Weather16Days] = []*/
             
             if let data = data {
@@ -80,6 +81,11 @@ struct Weather16Days {
                         }
                         
                     }
+                        if let cityName = jsonResponse["city_name"] as? String {
+                            location = cityName
+                        }
+                        
+                        
                       /*  if let dailyWeather = jsonResponse["data"] as? [[String:Any]] {
                             if let weatherData = dailyWeather["weather"] as? [String:Any] {
                                 for dataPoint in weatherData {
@@ -96,7 +102,8 @@ struct Weather16Days {
                 }catch{
                     print(error.localizedDescription)
                 }
-                completion(forecastArray16Days)
+                let weatherApiResponse = WeatherApiResponse(weatherList: forecastArray16Days, location: location)
+                completion(weatherApiResponse)
             }
         }
         

@@ -15,19 +15,16 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
     
     var forecast16DaysArray: [Weather16Days] = []
     
-    let location:Weather16Days 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (forecast16DaysResults:[Weather16Days]) in
+        Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (weatherApiResponse:WeatherApiResponse) in
             
-            self.forecast16DaysArray = forecast16DaysResults
-            
+            self.forecast16DaysArray = weatherApiResponse.weatherList
             
             DispatchQueue.main.async {
             self.forecast16DaysTableView?.reloadData()
-                self.locationLabel.text = Weather16Days.location
+            self.locationLabel.text = weatherApiResponse.location
         }
         }
         
