@@ -13,28 +13,34 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
+    @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var degreeLabel: UILabel!
     
     @IBOutlet weak var collView: UICollectionView!
     
     var dailyWeatherArray: [Weather] = []
     var hourlyWeatherArray: [Weather] = []
-    
+    var currentWeatherArray: [String:Any] = [:]
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        Weather.forecast(withLocation: "42.3601,-71.0589") { (dailyResults:[Weather], hourlyResults:[Weather]) in
-            self.dailyWeatherArray = dailyResults
-            self.hourlyWeatherArray = Array(hourlyResults[0...23])
+        Weather.forecast(withLocation: "42.3601,-71.0589") { (darkSkyApiResponse:DarkSkyApiResponse) in
+            
+            self.dailyWeatherArray = darkSkyApiResponse.dailyList
+            self.hourlyWeatherArray = Array(darkSkyApiResponse.hourlyList[0...23])
+            self.currentWeatherArray = darkSkyApiResponse.currentList
             
             DispatchQueue.main.async {
-                self.highestTempOfTheDayLabel.text = String(dailyResults[0].temperatureMax!)
-                self.lowestTempOfTheDayLabel.text = String(dailyResults[0].temperatureMin!)
+                self.highestTempOfTheDayLabel.text = String(darkSkyApiResponse.dailyList[0].temperatureMax!)
+                self.lowestTempOfTheDayLabel.text = String(darkSkyApiResponse.dailyList[0].temperatureMin!)
+                self.summaryLabel.text = darkSkyApiResponse.currentList["summary"] as! String
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
                 dateFormatter.dateFormat = "MMMM, dd"
-                let currentDate = dateFormatter.string(from: self.dailyWeatherArray[0].time)
+                let currentDate = dateFormatter.string(from: darkSkyApiResponse.dailyList[0].time)
                 self.dateAndTimeLabel.text = currentDate
                 
                 self.collView?.reloadData()

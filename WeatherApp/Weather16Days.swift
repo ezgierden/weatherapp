@@ -50,8 +50,6 @@ struct Weather16Days {
         }
     }
     
-    
-    
     static let baseApiPath = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
     
     static func get16DaysForecast(withLatitude lat:String, withLongitude long:String, completion: @escaping (WeatherApiResponse) -> ()) {
@@ -63,14 +61,11 @@ struct Weather16Days {
             
             var forecastArray16Days:[Weather16Days] = []
             var location:String = ""
-           /* var weatherDataArray:[Weather16Days] = []*/
             
             if let data = data {
                 do{
                      if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        
-                        print(jsonResponse)
-                        
+      
                         if let dailyData = jsonResponse["data"] as? [[String:Any]] {
                             for dataPoint in dailyData {
 
@@ -84,20 +79,6 @@ struct Weather16Days {
                         if let cityName = jsonResponse["city_name"] as? String {
                             location = cityName
                         }
-                        
-                        
-                      /*  if let dailyWeather = jsonResponse["data"] as? [[String:Any]] {
-                            if let weatherData = dailyWeather["weather"] as? [String:Any] {
-                                for dataPoint in weatherData {
-                                    if let weatherObject = try? Weather16Days(json: dataPoint){
-                                        weatherDataArray.append(weatherObject)
-                                    }
-                                    
-                                }
-                                
-                                
-                            }
-                }*/
                 }
                 }catch{
                     print(error.localizedDescription)
@@ -106,10 +87,6 @@ struct Weather16Days {
                 completion(weatherApiResponse)
             }
         }
-        
         task.resume()
     }
-    
-    
 }
-

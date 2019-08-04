@@ -27,7 +27,6 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
             self.locationLabel.text = weatherApiResponse.location
         }
         }
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
