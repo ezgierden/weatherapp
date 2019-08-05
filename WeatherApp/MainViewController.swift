@@ -31,12 +31,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let collectionViewFirstline = UIView(frame: CGRect(x: 10, y: 493, width: 400, height: 1.0))
+        let collectionViewFirstline = UIView(frame: CGRect(x: 10, y: 520, width: 400, height: 1.0))
         collectionViewFirstline.layer.borderWidth = 1.0
         collectionViewFirstline.layer.borderColor = UIColor.white.cgColor
         self.view.addSubview(collectionViewFirstline)
         
-        let collectionViewSecondLine = UIView(frame: CGRect(x: 10, y: 628, width: 400, height: 1.0))
+        let collectionViewSecondLine = UIView(frame: CGRect(x: 10, y: 650, width: 400, height: 1.0))
         collectionViewSecondLine.layer.borderWidth = 1.0
         collectionViewSecondLine.layer.borderColor = UIColor.white.cgColor
         self.view.addSubview(collectionViewSecondLine)

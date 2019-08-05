@@ -14,10 +14,15 @@ class Forecast16DaysCell: UITableViewCell {
     @IBOutlet weak var maxTempCellLabel: UILabel!
     @IBOutlet weak var minTempCellLabel: UILabel!
     @IBOutlet weak var cellBackgroundImageView: UIImageView!
+    @IBOutlet weak var cell: UITableViewCell!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cellBackgroundImageView.layer.cornerRadius = cellBackgroundImageView.frame.size.width / 30
+        cellBackgroundImageView.clipsToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
