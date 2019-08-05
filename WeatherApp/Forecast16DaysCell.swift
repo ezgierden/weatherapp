@@ -20,9 +20,6 @@ class Forecast16DaysCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        cellBackgroundImageView.layer.cornerRadius = cellBackgroundImageView.frame.size.width / 30
-        cellBackgroundImageView.clipsToBounds = true
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -25,7 +25,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var dailyWeatherArray: [Weather] = []
     var hourlyWeatherArray: [Weather] = []
-    var currentWeatherArray: [String:Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,18 +50,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             self.dailyWeatherArray = darkSkyApiResponse.dailyList
             self.hourlyWeatherArray = Array(darkSkyApiResponse.hourlyList[0...23])
-            self.currentWeatherArray = darkSkyApiResponse.currentList
+            let currentWeather = darkSkyApiResponse.currentWeather
             
             DispatchQueue.main.async {
                 self.highestTempOfTheDayLabel.text = String(Int(darkSkyApiResponse.dailyList[0].temperatureMax!))
                 self.lowestTempOfTheDayLabel.text = String(Int(darkSkyApiResponse.dailyList[0].temperatureMin!))
-                self.summaryLabel.text = darkSkyApiResponse.currentList["summary"] as? String
-                self.degreeLabel.text = String(Int(darkSkyApiResponse.currentList["temperature"] as! Double)) + "°"
-                self.humidityLabel.text = String(darkSkyApiResponse.currentList["humidity"] as! Double)
-                self.windSpeedLabel.text = String(darkSkyApiResponse.currentList["windSpeed"] as! Double)
-                self.cloudCoverLabel.text = String(darkSkyApiResponse.currentList["cloudCover"] as! Double)
-                self.visibilityLabel.text = String(darkSkyApiResponse.currentList["visibility"] as! Double)
-                self.backgroundImageView.image = UIImage(named: (darkSkyApiResponse.currentList["icon"] as! String) + "BG")
+                self.summaryLabel.text = currentWeather.summary
+                self.degreeLabel.text = String(Int(currentWeather.temperature)) + "°"
+                self.humidityLabel.text = String(currentWeather.humidity)
+                self.windSpeedLabel.text = String(currentWeather.windSpeed)
+                self.cloudCoverLabel.text = String(currentWeather.cloudCover)
+                self.visibilityLabel.text = String(currentWeather.visibility)
+                self.backgroundImageView.image = UIImage(named: (currentWeather.icon) + "BG")
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = TimeZone(abbreviation: "GMT")

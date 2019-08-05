@@ -18,8 +18,6 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target:nil , action:nil)
-
         Weather16Days.get16DaysForecast(withLatitude: "42.3601", withLongitude: "-71.0589") { (weatherApiResponse:WeatherApiResponse) in
             
             self.forecast16DaysArray = weatherApiResponse.weatherList
@@ -62,8 +60,6 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
         cell.minTempCellLabel.text = String(forecast16DaysArray[indexPath.row].minTemp) + "°"
         cell.dateCellLabel.text = currentDate
         cell.cellBackgroundImageView.image = UIImage(named: String(forecast16DaysArray[indexPath.row].weather.code))
-        
-        cell.layer.borderWidth = 0.25
         
         return cell
     }

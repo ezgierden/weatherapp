@@ -12,5 +12,5 @@ struct DarkSkyApiResponse {
     
     var hourlyList:[Weather]
     var dailyList:[Weather]
-    var currentList:[String:Any]
+    var currentWeather: CurrentWeather
 }
