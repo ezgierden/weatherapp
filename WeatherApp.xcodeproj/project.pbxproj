@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */; };
+		3B1F495B22F8B17B00B036CF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F495A22F8B17B00B036CF /* HomeViewModel.swift */; };
 		3B4134AD22F760C9007A1D8E /* DarkSkyApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4134AC22F760C9007A1D8E /* DarkSkyApiResponse.swift */; };
 		3B4134B122F8A5E6007A1D8E /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4134B022F8A5E5007A1D8E /* CurrentWeather.swift */; };
 		3B53C22822ECDC3E00D58596 /* Weather16Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B53C22722ECDC3E00D58596 /* Weather16Days.swift */; };
@@ -15,7 +16,7 @@
 		3B5E7A6622EF6692004FE971 /* Forecast16DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E7A6522EF6692004FE971 /* Forecast16DaysCell.swift */; };
 		3B5E7A6822F0F7E9004FE971 /* InnerWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E7A6722F0F7E9004FE971 /* InnerWeather.swift */; };
 		3B69070922CF93860050D3CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070822CF93860050D3CD /* AppDelegate.swift */; };
-		3B69070B22CF93860050D3CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070A22CF93860050D3CD /* MainViewController.swift */; };
+		3B69070B22CF93860050D3CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070A22CF93860050D3CD /* HomeViewController.swift */; };
 		3B69070E22CF93860050D3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B69070C22CF93860050D3CD /* Main.storyboard */; };
 		3B69071022CF93890050D3CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B69070F22CF93890050D3CD /* Assets.xcassets */; };
 		3B69071322CF93890050D3CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B69071122CF93890050D3CD /* LaunchScreen.storyboard */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForHoursOfTheDayCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B1F495A22F8B17B00B036CF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		3B4134AC22F760C9007A1D8E /* DarkSkyApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyApiResponse.swift; sourceTree = "<group>"; };
 		3B4134B022F8A5E5007A1D8E /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		3B53C22722ECDC3E00D58596 /* Weather16Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather16Days.swift; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		3B5E7A6722F0F7E9004FE971 /* InnerWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerWeather.swift; sourceTree = "<group>"; };
 		3B69070522CF93860050D3CD /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B69070822CF93860050D3CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B69070A22CF93860050D3CD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3B69070A22CF93860050D3CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3B69070D22CF93860050D3CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B69070F22CF93890050D3CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B69071222CF93890050D3CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B1F495722F8B0D200B036CF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3B1F495922F8B0F100B036CF /* View */,
+				3B1F495822F8B0E400B036CF /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		3B1F495822F8B0E400B036CF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3B1F495A22F8B17B00B036CF /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3B1F495922F8B0F100B036CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B69070A22CF93860050D3CD /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B4134B422F8B058007A1D8E /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				3B1F495722F8B0D200B036CF /* Home */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
 		3B6906FC22CF93860050D3CD = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +150,7 @@
 		3B69070722CF93860050D3CD /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				3B4134B422F8B058007A1D8E /* Module */,
 				3B69070822CF93860050D3CD /* AppDelegate.swift */,
 				3BFFC1E422E5D9D500F743A8 /* Weather.swift */,
 				3B4134AC22F760C9007A1D8E /* DarkSkyApiResponse.swift */,
@@ -122,7 +158,6 @@
 				3B5557D222F32DE1002E4709 /* WeatherApiResponse.swift */,
 				3B4134B022F8A5E5007A1D8E /* CurrentWeather.swift */,
 				3B5E7A6722F0F7E9004FE971 /* InnerWeather.swift */,
-				3B69070A22CF93860050D3CD /* MainViewController.swift */,
 				3B6F06AD22EF2748007C0F5F /* Forecast16DaysTableViewController.swift */,
 				3B69070C22CF93860050D3CD /* Main.storyboard */,
 				3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */,
@@ -290,7 +325,8 @@
 				3B5E7A6622EF6692004FE971 /* Forecast16DaysCell.swift in Sources */,
 				3B6F06AE22EF2749007C0F5F /* Forecast16DaysTableViewController.swift in Sources */,
 				3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */,
-				3B69070B22CF93860050D3CD /* MainViewController.swift in Sources */,
+				3B1F495B22F8B17B00B036CF /* HomeViewModel.swift in Sources */,
+				3B69070B22CF93860050D3CD /* HomeViewController.swift in Sources */,
 				3B4134AD22F760C9007A1D8E /* DarkSkyApiResponse.swift in Sources */,
 				3B69070922CF93860050D3CD /* AppDelegate.swift in Sources */,
 				3B5557D322F32DE1002E4709 /* WeatherApiResponse.swift in Sources */,

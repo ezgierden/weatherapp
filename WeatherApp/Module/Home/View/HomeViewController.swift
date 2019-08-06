@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
@@ -20,11 +20,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var cloudCoverLabel: UILabel!
     @IBOutlet weak var visibilityLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
-    
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var collView: UICollectionView!
     
     var dailyWeatherArray: [Weather] = []
     var hourlyWeatherArray: [Weather] = []
+    var viewModel: HomeViewModelProtocol = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +47,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.view.addSubview(bottomLine)
         
         
-        Weather.forecast(withLocation: "42.3601,-71.0589") { (darkSkyApiResponse:DarkSkyApiResponse) in
+        viewModel.getForecast(location: "42.3601,-71.0589") {
+             let humidity = self.viewModel.getHumidity()
+             self.humidityLabel.text = humidity
+        }
+
+        
+        
+      /*  Weather.forecast(withLocation: "42.3601,-71.0589") { (darkSkyApiResponse:DarkSkyApiResponse) in
             
             self.dailyWeatherArray = darkSkyApiResponse.dailyList
             self.hourlyWeatherArray = Array(darkSkyApiResponse.hourlyList[0...23])
             let currentWeather = darkSkyApiResponse.currentWeather
             
             DispatchQueue.main.async {
+                
+                self.locationLabel.text = "Boston, MA"
                 self.highestTempOfTheDayLabel.text = String(Int(darkSkyApiResponse.dailyList[0].temperatureMax!))
                 self.lowestTempOfTheDayLabel.text = String(Int(darkSkyApiResponse.dailyList[0].temperatureMin!))
                 self.summaryLabel.text = currentWeather.summary
@@ -63,40 +73,30 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 self.visibilityLabel.text = String(currentWeather.visibility)
                 self.backgroundImageView.image = UIImage(named: (currentWeather.icon) + "BG")
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-                dateFormatter.dateFormat = "MMMM, dd"
-                let currentDate = dateFormatter.string(from: darkSkyApiResponse.dailyList[0].time)
+                let currentDate = self.viewModel.formatDate(date: darkSkyApiResponse.dailyList[0].time)
                 self.dateAndTimeLabel.text = currentDate
                 
                 self.collView?.reloadData()
             }
-        }
+        }*/
     }
-    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hourlyWeatherArray.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherForHoursOfTheDayCollectionViewCell", for: indexPath) as! WeatherForHoursOfTheDayCollectionViewCell
         
         cell.degreeCellLabel.text = String(hourlyWeatherArray[indexPath.row].temperature!)
         
-        let hourlyFormatter = DateFormatter()
-        hourlyFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        hourlyFormatter.dateFormat = "HH"
-        let time = hourlyFormatter.string(from: hourlyWeatherArray[indexPath.row].time)
-        
+        let time = viewModel.formatDateToHour(date: hourlyWeatherArray[indexPath.row].time)
         cell.timeCellLabel.text = time
         
         cell.iconCellImageView.image = UIImage(named: hourlyWeatherArray[indexPath.row].icon)
         
         return cell
     }
-
-
 }
 
