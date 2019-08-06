@@ -22,15 +22,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var collView: UICollectionView!
-    
-    var dailyWeatherArray: [Weather] = []
-    var hourlyWeatherArray: [Weather] = []
+
     var viewModel: HomeViewModelProtocol = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setupUI()
         
+        viewModel.getForecast(location: "42.3601,-71.0589") {
+            
+            DispatchQueue.main.async {
+                self.setData()
+            }
+        }
+    }
+    
+    private func setupUI() {
         let collectionViewFirstline = UIView(frame: CGRect(x: 10, y: 520, width: 400, height: 1.0))
         collectionViewFirstline.layer.borderWidth = 1.0
         collectionViewFirstline.layer.borderColor = UIColor.white.cgColor
@@ -45,56 +53,39 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         bottomLine.layer.borderWidth = 1.0
         bottomLine.layer.borderColor = UIColor.white.cgColor
         self.view.addSubview(bottomLine)
-        
-        
-        viewModel.getForecast(location: "42.3601,-71.0589") {
-             let humidity = self.viewModel.getHumidity()
-             self.humidityLabel.text = humidity
-        }
-
-        
-        
-      /*  Weather.forecast(withLocation: "42.3601,-71.0589") { (darkSkyApiResponse:DarkSkyApiResponse) in
-            
-            self.dailyWeatherArray = darkSkyApiResponse.dailyList
-            self.hourlyWeatherArray = Array(darkSkyApiResponse.hourlyList[0...23])
-            let currentWeather = darkSkyApiResponse.currentWeather
-            
-            DispatchQueue.main.async {
-                
-                self.locationLabel.text = "Boston, MA"
-                self.highestTempOfTheDayLabel.text = String(Int(darkSkyApiResponse.dailyList[0].temperatureMax!))
-                self.lowestTempOfTheDayLabel.text = String(Int(darkSkyApiResponse.dailyList[0].temperatureMin!))
-                self.summaryLabel.text = currentWeather.summary
-                self.degreeLabel.text = String(Int(currentWeather.temperature)) + "°"
-                self.humidityLabel.text = String(currentWeather.humidity)
-                self.windSpeedLabel.text = String(currentWeather.windSpeed)
-                self.cloudCoverLabel.text = String(currentWeather.cloudCover)
-                self.visibilityLabel.text = String(currentWeather.visibility)
-                self.backgroundImageView.image = UIImage(named: (currentWeather.icon) + "BG")
-                
-                let currentDate = self.viewModel.formatDate(date: darkSkyApiResponse.dailyList[0].time)
-                self.dateAndTimeLabel.text = currentDate
-                
-                self.collView?.reloadData()
-            }
-        }*/
     }
-
+    
+    private func setData() {
+        self.dateAndTimeLabel.text = self.viewModel.formatDate(date: self.viewModel.getCurrentDate())
+        self.humidityLabel.text = self.viewModel.getHumidity()
+        self.highestTempOfTheDayLabel.text = self.viewModel.getMaxTemp()
+        self.lowestTempOfTheDayLabel.text = self.viewModel.getMinTemp()
+        self.summaryLabel.text = self.viewModel.getSummary()
+        self.degreeLabel.text = self.viewModel.getDegree()
+        self.windSpeedLabel.text = self.viewModel.getWindSpeed()
+        self.cloudCoverLabel.text = self.viewModel.getCloudCover()
+        self.visibilityLabel.text = self.viewModel.getVisibility()
+        self.backgroundImageView.image = UIImage(named: self.viewModel.getBackgroundImageName())
+        
+        self.collView?.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return hourlyWeatherArray.count
+        return viewModel.getHourlyCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherForHoursOfTheDayCollectionViewCell", for: indexPath) as! WeatherForHoursOfTheDayCollectionViewCell
         
-        cell.degreeCellLabel.text = String(hourlyWeatherArray[indexPath.row].temperature!)
+        let weatherAtIndex = self.viewModel.getWeatherAtIndex(index: indexPath.row)
         
-        let time = viewModel.formatDateToHour(date: hourlyWeatherArray[indexPath.row].time)
+        cell.degreeCellLabel.text = String(weatherAtIndex.temperature!)
+        
+        let time = viewModel.formatDateToHour(date: weatherAtIndex.time)
         cell.timeCellLabel.text = time
         
-        cell.iconCellImageView.image = UIImage(named: hourlyWeatherArray[indexPath.row].icon)
+        cell.iconCellImageView.image = UIImage(named: weatherAtIndex.icon)
         
         return cell
     }

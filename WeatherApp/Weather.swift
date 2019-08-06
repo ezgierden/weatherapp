@@ -96,7 +96,7 @@ struct Weather {
                 }catch{
                     print(error.localizedDescription)
                 }
-                let darkSkyApiResponse = DarkSkyApiResponse(hourlyList: hourlyForecastArray, dailyList: dailyForecastArray, currentWeather: currentWeather!)
+                let darkSkyApiResponse = DarkSkyApiResponse(hourlyList: Array(hourlyForecastArray[0...23]), dailyList: dailyForecastArray, currentWeather: currentWeather!)
                 completion(darkSkyApiResponse)
             }
         }

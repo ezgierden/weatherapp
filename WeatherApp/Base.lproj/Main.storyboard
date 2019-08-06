@@ -149,7 +149,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatherapp logo transparent.001" translatesAutoresizingMaskIntoConstraints="NO" id="zhr-tK-bbe">
-                                <rect key="frame" x="93" y="110.99999999999999" width="238" height="107.00000000000004"/>
+                                <rect key="frame" x="93" y="202" width="238" height="16"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tjN-pm-Qh0">
                                 <rect key="frame" x="20" y="530" width="374" height="115"/>
