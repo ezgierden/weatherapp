@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */; };
 		3B1F495B22F8B17B00B036CF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1F495A22F8B17B00B036CF /* HomeViewModel.swift */; };
+		3B412ABF22F9B2DF006AA778 /* SixteenDaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B412ABE22F9B2DF006AA778 /* SixteenDaysViewModel.swift */; };
 		3B4134AD22F760C9007A1D8E /* DarkSkyApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4134AC22F760C9007A1D8E /* DarkSkyApiResponse.swift */; };
 		3B4134B122F8A5E6007A1D8E /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4134B022F8A5E5007A1D8E /* CurrentWeather.swift */; };
 		3B53C22822ECDC3E00D58596 /* Weather16Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B53C22722ECDC3E00D58596 /* Weather16Days.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForHoursOfTheDayCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B1F495A22F8B17B00B036CF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		3B412ABE22F9B2DF006AA778 /* SixteenDaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixteenDaysViewModel.swift; sourceTree = "<group>"; };
 		3B4134AC22F760C9007A1D8E /* DarkSkyApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyApiResponse.swift; sourceTree = "<group>"; };
 		3B4134B022F8A5E5007A1D8E /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		3B53C22722ECDC3E00D58596 /* Weather16Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather16Days.swift; sourceTree = "<group>"; };
@@ -97,8 +99,8 @@
 		3B1F495722F8B0D200B036CF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3B1F495922F8B0F100B036CF /* View */,
 				3B1F495822F8B0E400B036CF /* ViewModel */,
+				3B1F495922F8B0F100B036CF /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -119,9 +121,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		3B412ABB22F9B254006AA778 /* 16DaysView */ = {
+			isa = PBXGroup;
+			children = (
+				3B412ABD22F9B29D006AA778 /* ViewModel */,
+				3B412ABC22F9B296006AA778 /* View */,
+			);
+			path = 16DaysView;
+			sourceTree = "<group>";
+		};
+		3B412ABC22F9B296006AA778 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B6F06AD22EF2748007C0F5F /* Forecast16DaysTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B412ABD22F9B29D006AA778 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3B412ABE22F9B2DF006AA778 /* SixteenDaysViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3B4134B422F8B058007A1D8E /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				3B412ABB22F9B254006AA778 /* 16DaysView */,
 				3B1F495722F8B0D200B036CF /* Home */,
 			);
 			path = Module;
@@ -158,7 +186,6 @@
 				3B5557D222F32DE1002E4709 /* WeatherApiResponse.swift */,
 				3B4134B022F8A5E5007A1D8E /* CurrentWeather.swift */,
 				3B5E7A6722F0F7E9004FE971 /* InnerWeather.swift */,
-				3B6F06AD22EF2748007C0F5F /* Forecast16DaysTableViewController.swift */,
 				3B69070C22CF93860050D3CD /* Main.storyboard */,
 				3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */,
 				3B5E7A6522EF6692004FE971 /* Forecast16DaysCell.swift */,
@@ -324,6 +351,7 @@
 				3B53C22822ECDC3E00D58596 /* Weather16Days.swift in Sources */,
 				3B5E7A6622EF6692004FE971 /* Forecast16DaysCell.swift in Sources */,
 				3B6F06AE22EF2749007C0F5F /* Forecast16DaysTableViewController.swift in Sources */,
+				3B412ABF22F9B2DF006AA778 /* SixteenDaysViewModel.swift in Sources */,
 				3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */,
 				3B1F495B22F8B17B00B036CF /* HomeViewModel.swift in Sources */,
 				3B69070B22CF93860050D3CD /* HomeViewController.swift in Sources */,
