@@ -29,6 +29,12 @@ struct SixteenDaysWeather: Codable {
     }
 }
 
+extension SixteenDaysWeather{
+    func getFormattedMaxTemp() -> String {
+        return String(Int(maxTemp))
+    }
+}
+
 struct WeatherCode: Codable {
     var code: Int
 }

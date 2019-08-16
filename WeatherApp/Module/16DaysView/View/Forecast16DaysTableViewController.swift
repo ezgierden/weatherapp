@@ -13,7 +13,7 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
     @IBOutlet weak var forecast16DaysTableView: UITableView!
     @IBOutlet weak var locationLabel: UILabel!
     
-    var sixteenDaysViewModel:SixteenDaysViewModelProtocol = SixteenDaysViewModel()
+    var sixteenDaysViewModel:SixteenDaysViewModelProtocol = SixteenDaysViewModel(apiClient: WeatherAPIClient())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
         let weatherAtIndex = self.sixteenDaysViewModel.getWeatherAtIndex(index: indexPath.row)
         
         cell.dateCellLabel.text = sixteenDaysViewModel.formatDate(timeStamp: weatherAtIndex.timeStamp)
-        cell.maxTempCellLabel.text = String(Int(weatherAtIndex.maxTemp)) + "°"
+        cell.maxTempCellLabel.text = weatherAtIndex.getFormattedMaxTemp() + "°"
         cell.minTempCellLabel.text = String(Int(weatherAtIndex.minTemp)) + "°"
         cell.cellBackgroundImageView.image = UIImage(named: String(weatherAtIndex.weatherCode.code))
         

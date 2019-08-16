@@ -20,9 +20,14 @@ protocol SixteenDaysViewModelProtocol {
 class SixteenDaysViewModel: SixteenDaysViewModelProtocol {
     
     private var sixteenDaysForecastResponse: Weather16DaysResponse?
+    private var apiClient: WeatherAPIClient
+    
+    init(apiClient: WeatherAPIClient) {
+        self.apiClient = apiClient
+    }
     
     func getForecast(lat: String, long: String, completion: @escaping () -> ()) {
-        WeatherAPIClient.get16DaysForecast(withLatitude: lat, withLongitude: long) { (weather16DaysResponse: Weather16DaysResponse) in
+        apiClient.get16DaysForecast(withLatitude: lat, withLongitude: long) { (weather16DaysResponse: Weather16DaysResponse) in
             self.sixteenDaysForecastResponse = weather16DaysResponse
             completion()
         }

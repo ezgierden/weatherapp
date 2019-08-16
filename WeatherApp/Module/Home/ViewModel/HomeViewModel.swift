@@ -23,18 +23,23 @@ protocol HomeViewModelProtocol {
     func getVisibility() -> String
     func getCurrentDate() -> Date
     func getLocation() -> String
-    func getWeatherAtIndex(index: Int) -> Weather
+    func getWeatherAtIndex(index: Int) -> HourlyData
     func getHourlyCount() -> Int
     func getBackgroundImageName() -> String
 }
 
 class HomeViewModel: HomeViewModelProtocol {
     
-    private var forecastResponse: DarkSkyApiResponse?
+    private var forecastResponse: WeatherResponse?
+    private var apiClient: WeatherAPIClient
+    
+    init(apiClient: WeatherAPIClient) {
+        self.apiClient = apiClient
+    }
     
     func getForecast(location: String, completion: @escaping () -> ()){
-        Weather.forecast(withLocation: location) { (darkSkyApiResponse:DarkSkyApiResponse) in
-            self.forecastResponse = darkSkyApiResponse
+        apiClient.getForecast (withLocation: location) { (weatherResponse: WeatherResponse) in
+            self.forecastResponse = weatherResponse
             completion()
         }
     }
@@ -60,11 +65,11 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func getMaxTemp() -> String {
-        return String(self.forecastResponse!.dailyList[0].temperatureMax!)
+        return String(self.forecastResponse!.dailyWeather.data[0].getFormattedMaxTemp())
     }
     
     func getMinTemp() -> String {
-        return String(self.forecastResponse!.dailyList[0].temperatureMin!)
+        return String(self.forecastResponse!.dailyWeather.data[0].getFormattedMinTemp())
     }
     
     func getSummary() -> String {
@@ -72,7 +77,7 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func getDegree() -> String {
-        return String(Int(self.forecastResponse!.currentWeather.temperature))
+        return String(self.forecastResponse!.currentWeather.getFormattedTemp())
     }
     
     func getWindSpeed() -> String {
@@ -88,7 +93,7 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func getCurrentDate() -> Date {
-        return self.forecastResponse!.dailyList[0].time
+        return self.forecastResponse!.dailyWeather.data[0].getFormattedTimeStamp()
     }
     
     func getLocation() -> String {
@@ -99,13 +104,13 @@ class HomeViewModel: HomeViewModelProtocol {
         return forecastResponse!.currentWeather.icon + "BG"
     }
     
-    func getWeatherAtIndex(index: Int) -> Weather {
-        return forecastResponse!.hourlyList[index]
+    func getWeatherAtIndex(index: Int) -> HourlyData {
+        return forecastResponse!.hourlyWeather.data[index]
     }
     
     func getHourlyCount() -> Int {
         if forecastResponse != nil {
-            return forecastResponse!.hourlyList.count
+            return forecastResponse!.hourlyWeather.data.count
         } else {
             return 0
         }

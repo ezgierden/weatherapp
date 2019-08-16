@@ -23,7 +23,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var collView: UICollectionView!
 
-    var viewModel: HomeViewModelProtocol = HomeViewModel()
+    var viewModel: HomeViewModelProtocol = HomeViewModel(apiClient: WeatherAPIClient())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,9 +80,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let weatherAtIndex = self.viewModel.getWeatherAtIndex(index: indexPath.row)
         
-        cell.degreeCellLabel.text = String(weatherAtIndex.temperature!)
+        cell.degreeCellLabel.text = String(weatherAtIndex.getFormattedTemperature())
         
-        let time = viewModel.formatDateToHour(date: weatherAtIndex.time)
+        let time = viewModel.formatDateToHour(date: weatherAtIndex.getFormattedTime())
         cell.timeCellLabel.text = time
         
         cell.iconCellImageView.image = UIImage(named: weatherAtIndex.icon)
