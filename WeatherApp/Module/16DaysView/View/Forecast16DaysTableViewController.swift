@@ -52,10 +52,10 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
         
         let weatherAtIndex = self.sixteenDaysViewModel.getWeatherAtIndex(index: indexPath.row)
         
-        cell.dateCellLabel.text = sixteenDaysViewModel.formatDate(date: weatherAtIndex.timeStamp)
-        cell.maxTempCellLabel.text = String(weatherAtIndex.maxTemp) + "°"
-        cell.minTempCellLabel.text = String(weatherAtIndex.minTemp) + "°"
-        cell.cellBackgroundImageView.image = UIImage(named: String(weatherAtIndex.weather.code))
+        cell.dateCellLabel.text = sixteenDaysViewModel.formatDate(timeStamp: weatherAtIndex.timeStamp)
+        cell.maxTempCellLabel.text = String(Int(weatherAtIndex.maxTemp)) + "°"
+        cell.minTempCellLabel.text = String(Int(weatherAtIndex.minTemp)) + "°"
+        cell.cellBackgroundImageView.image = UIImage(named: String(weatherAtIndex.weatherCode.code))
         
         return cell
     }

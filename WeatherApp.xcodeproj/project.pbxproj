@@ -16,6 +16,8 @@
 		3B5557D322F32DE1002E4709 /* WeatherApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5557D222F32DE1002E4709 /* WeatherApiResponse.swift */; };
 		3B5E7A6622EF6692004FE971 /* Forecast16DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E7A6522EF6692004FE971 /* Forecast16DaysCell.swift */; };
 		3B5E7A6822F0F7E9004FE971 /* InnerWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5E7A6722F0F7E9004FE971 /* InnerWeather.swift */; };
+		3B6448FA230619A000865EB6 /* Weather16DaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6448F9230619A000865EB6 /* Weather16DaysResponse.swift */; };
+		3B6448FC23061E1A00865EB6 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6448FB23061E1A00865EB6 /* WeatherAPIClient.swift */; };
 		3B69070922CF93860050D3CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070822CF93860050D3CD /* AppDelegate.swift */; };
 		3B69070B22CF93860050D3CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69070A22CF93860050D3CD /* HomeViewController.swift */; };
 		3B69070E22CF93860050D3CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B69070C22CF93860050D3CD /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		3B5557D222F32DE1002E4709 /* WeatherApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherApiResponse.swift; path = ../WeatherApiResponse.swift; sourceTree = "<group>"; };
 		3B5E7A6522EF6692004FE971 /* Forecast16DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast16DaysCell.swift; sourceTree = "<group>"; };
 		3B5E7A6722F0F7E9004FE971 /* InnerWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerWeather.swift; sourceTree = "<group>"; };
+		3B6448F9230619A000865EB6 /* Weather16DaysResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather16DaysResponse.swift; sourceTree = "<group>"; };
+		3B6448FB23061E1A00865EB6 /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
 		3B69070522CF93860050D3CD /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B69070822CF93860050D3CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B69070A22CF93860050D3CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +159,14 @@
 			path = Module;
 			sourceTree = "<group>";
 		};
+		3B6448F82306197800865EB6 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				3B6448F9230619A000865EB6 /* Weather16DaysResponse.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		3B6906FC22CF93860050D3CD = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +190,7 @@
 		3B69070722CF93860050D3CD /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				3B8409A0230618BC0091FFA9 /* API */,
 				3B4134B422F8B058007A1D8E /* Module */,
 				3B69070822CF93860050D3CD /* AppDelegate.swift */,
 				3BFFC1E422E5D9D500F743A8 /* Weather.swift */,
@@ -212,6 +225,15 @@
 				3B69072A22CF93890050D3CD /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		3B8409A0230618BC0091FFA9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3B6448F82306197800865EB6 /* DataModel */,
+				3B6448FB23061E1A00865EB6 /* WeatherAPIClient.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +376,8 @@
 				3B412ABF22F9B2DF006AA778 /* SixteenDaysViewModel.swift in Sources */,
 				3B1AB6C222D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift in Sources */,
 				3B1F495B22F8B17B00B036CF /* HomeViewModel.swift in Sources */,
+				3B6448FC23061E1A00865EB6 /* WeatherAPIClient.swift in Sources */,
+				3B6448FA230619A000865EB6 /* Weather16DaysResponse.swift in Sources */,
 				3B69070B22CF93860050D3CD /* HomeViewController.swift in Sources */,
 				3B4134AD22F760C9007A1D8E /* DarkSkyApiResponse.swift in Sources */,
 				3B69070922CF93860050D3CD /* AppDelegate.swift in Sources */,

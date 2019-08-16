@@ -13,20 +13,27 @@ protocol SixteenDaysViewModelProtocol {
     func getForecast(lat:String, long:String, completion: @escaping () -> ())
     func getLocation() -> String
     func getCount() -> Int
-    func formatDate(date:Date) -> String
-    func getWeatherAtIndex(index:Int) -> Weather16Days
+    func formatDate(timeStamp: Int) -> String
+    func getWeatherAtIndex(index: Int) -> SixteenDaysWeather
 }
 
 class SixteenDaysViewModel: SixteenDaysViewModelProtocol {
     
-    private var sixteenDaysForecastResponse: WeatherApiResponse?
+    private var sixteenDaysForecastResponse: Weather16DaysResponse?
     
-    func getForecast(lat:String, long:String, completion: @escaping () -> ()) {
+    func getForecast(lat: String, long: String, completion: @escaping () -> ()) {
+        WeatherAPIClient.get16DaysForecast(withLatitude: lat, withLongitude: long) { (weather16DaysResponse: Weather16DaysResponse) in
+            self.sixteenDaysForecastResponse = weather16DaysResponse
+            completion()
+        }
+    }
+    
+   /* func getForecast(lat:String, long:String, completion: @escaping () -> ()) {
         Weather16Days.get16DaysForecast(withLatitude: lat, withLongitude: long) { (weatherApiResponse:WeatherApiResponse) in
             self.sixteenDaysForecastResponse = weatherApiResponse
             completion()
         }
-    }
+    }*/
     
     func getLocation() -> String {
         return self.sixteenDaysForecastResponse!.location
@@ -34,21 +41,21 @@ class SixteenDaysViewModel: SixteenDaysViewModelProtocol {
     
     func getCount() -> Int {
         if sixteenDaysForecastResponse != nil {
-            return sixteenDaysForecastResponse!.weatherList.count
+            return sixteenDaysForecastResponse!.data.count
         } else {
             return 0
         }
     }
     
-    func formatDate(date: Date) -> String {
+    func formatDate(timeStamp: Int) -> String {
+        let date = Date(timeIntervalSince1970: Double(timeStamp))
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.dateFormat = "MMMM, dd"
         return dateFormatter.string(from: date)
     }
     
-    func getWeatherAtIndex(index:Int) -> Weather16Days {
-        return sixteenDaysForecastResponse!.weatherList[index]
+    func getWeatherAtIndex(index:Int) -> SixteenDaysWeather {
+        return sixteenDaysForecastResponse!.data[index]
     }
-
 }
