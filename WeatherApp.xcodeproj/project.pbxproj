@@ -128,8 +128,8 @@
 		3B412ABC22F9B296006AA778 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3B5E7A6522EF6692004FE971 /* Forecast16DaysCell.swift */,
 				3B6F06AD22EF2748007C0F5F /* Forecast16DaysTableViewController.swift */,
+				3B5E7A6522EF6692004FE971 /* Forecast16DaysCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
