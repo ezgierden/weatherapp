@@ -8,45 +8,45 @@
 
 import Foundation
 
-struct WeatherResponse: Codable {
-    var currentWeather: CurrentWeather
-    var hourlyWeather: HourlyWeather
-    var dailyWeather: DailyWeather
+struct WeatherResponse: Decodable {
+    let currentWeather: CurrentWeather
+    let hourlyWeather: HourlyWeather
+    let dailyWeather: DailyWeather
     
     private enum CodingKeys: String, CodingKey {
         case currentWeather = "currently", hourlyWeather = "hourly", dailyWeather = "daily"
     }
 }
 
-struct CurrentWeather: Codable {
-    var time: Int
-    var humidity:Double
-    var cloudCover:Double
-    var windSpeed:Double
-    var visibility:Double
-    var temperature:Double
-    var summary:String
-    var icon:String
+struct CurrentWeather: Decodable {
+    let time: Int
+    let humidity:Double
+    let cloudCover:Double
+    let windSpeed:Double
+    let visibility:Double
+    let temperature:Double
+    let summary:String
+    let icon:String
 }
 
 extension CurrentWeather {
     func getFormattedTemp() -> String {
-        return String(Int(temperature))
+        return String(Int((temperature - 32) / 1.8))
     }
 }
 
-struct HourlyWeather: Codable {
-    var data: [HourlyData]
+struct HourlyWeather: Decodable {
+    let data: [HourlyData]
 }
 
-struct DailyWeather: Codable{
-    var data: [DailyData]
+struct DailyWeather: Decodable{
+    let data: [DailyData]
 }
 
-struct DailyData: Codable {
-    var timeStamp: Int
-    var maxTemp: Double
-    var minTemp: Double
+struct DailyData: Decodable {
+    let timeStamp: Int
+    let maxTemp: Double
+    let minTemp: Double
     
     private enum CodingKeys: String, CodingKey {
         case timeStamp = "time", maxTemp = "temperatureMax", minTemp = "temperatureMin"
@@ -55,25 +55,25 @@ struct DailyData: Codable {
 
 extension DailyData{
     func getFormattedMaxTemp() -> String {
-        return String(Int(maxTemp))
+        return String(Int((maxTemp - 32) / 1.8))
     }
     func getFormattedMinTemp() -> String {
-        return String(Int(minTemp))
+        return String(Int((minTemp - 32) / 1.8))
     }
     func getFormattedTimeStamp() -> Date{
         return Date(timeIntervalSince1970: Double(timeStamp))
     }
 }
 
-struct HourlyData: Codable {
-    var time: Int
-    var icon: String
-    var temperature: Double
+struct HourlyData: Decodable {
+    let time: Int
+    let icon: String
+    let temperature: Double
 }
 
 extension HourlyData {
     func getFormattedTemperature() -> String {
-        return String(Int(temperature))
+        return String(Int((temperature - 32) / 1.8))
     }
     func getFormattedTime() -> Date {
         return Date(timeIntervalSince1970: Double(time))

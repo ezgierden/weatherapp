@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct Weather16DaysResponse: Codable {
-    var data: [SixteenDaysWeather]
-    var location: String
+struct Weather16DaysResponse: Decodable {
+    let data: [SixteenDaysWeather]
+    let location: String
     
     private enum CodingKeys: String, CodingKey {
         case data, location = "city_name"
     }
 }
 
-struct SixteenDaysWeather: Codable {
-    var timeStamp: Int
-    var temperature: Double
-    var maxTemp: Double
-    var minTemp: Double
-    var weatherCode: WeatherCode
+struct SixteenDaysWeather: Decodable {
+    let timeStamp: Int
+    let temperature: Double
+    let maxTemp: Double
+    let minTemp: Double
+    let weatherCode: WeatherCode
     
     private enum CodingKeys : String, CodingKey {
         case timeStamp = "ts", temperature = "temp", maxTemp = "max_temp", minTemp = "min_temp", weatherCode = "weather"
@@ -35,8 +35,8 @@ extension SixteenDaysWeather{
     }
 }
 
-struct WeatherCode: Codable {
-    var code: Int
+struct WeatherCode: Decodable {
+    let code: Int
 }
 
 

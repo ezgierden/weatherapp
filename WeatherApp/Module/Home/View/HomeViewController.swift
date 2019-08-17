@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var visibilityLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var collView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
 
     var viewModel: HomeViewModelProtocol = HomeViewModel(apiClient: WeatherAPIClient())
     
@@ -56,18 +56,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     private func setData() {
-        self.dateAndTimeLabel.text = self.viewModel.formatDate(date: self.viewModel.getCurrentDate())
-        self.humidityLabel.text = self.viewModel.getHumidity()
-        self.highestTempOfTheDayLabel.text = self.viewModel.getMaxTemp()
-        self.lowestTempOfTheDayLabel.text = self.viewModel.getMinTemp()
-        self.summaryLabel.text = self.viewModel.getSummary()
-        self.degreeLabel.text = self.viewModel.getDegree()
-        self.windSpeedLabel.text = self.viewModel.getWindSpeed()
-        self.cloudCoverLabel.text = self.viewModel.getCloudCover()
-        self.visibilityLabel.text = self.viewModel.getVisibility()
-        self.backgroundImageView.image = UIImage(named: self.viewModel.getBackgroundImageName())
+        dateAndTimeLabel.text = viewModel.formatDate(date: viewModel.getCurrentDate())
+        humidityLabel.text = viewModel.getHumidity()
+        highestTempOfTheDayLabel.text = viewModel.getMaxTemp() + "°"
+        lowestTempOfTheDayLabel.text = viewModel.getMinTemp() + "°"
+        summaryLabel.text = viewModel.getSummary()
+        degreeLabel.text = viewModel.getDegree() + "°"
+        windSpeedLabel.text = viewModel.getWindSpeed()
+        cloudCoverLabel.text = viewModel.getCloudCover()
+        visibilityLabel.text = viewModel.getVisibility()
+        backgroundImageView.image = UIImage(named: viewModel.getBackgroundImageName())
+        locationLabel.text = viewModel.getLocation()
         
-        self.collView?.reloadData()
+        collectionView?.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -78,9 +79,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherForHoursOfTheDayCollectionViewCell", for: indexPath) as! WeatherForHoursOfTheDayCollectionViewCell
         
-        let weatherAtIndex = self.viewModel.getWeatherAtIndex(index: indexPath.row)
+        let weatherAtIndex = viewModel.getWeatherAtIndex(index: indexPath.row)
         
-        cell.degreeCellLabel.text = String(weatherAtIndex.getFormattedTemperature())
+        cell.degreeCellLabel.text = String(weatherAtIndex.getFormattedTemperature()) + "°"
         
         let time = viewModel.formatDateToHour(date: weatherAtIndex.getFormattedTime())
         cell.timeCellLabel.text = time

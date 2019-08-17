@@ -10,12 +10,12 @@ import Foundation
 
 class WeatherAPIClient {
     
-    private let WEATHER_API_16_DAYS_URL = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
-    private let WEATHER_API_URL = "https://api.darksky.net/forecast/b38f6ad6d1efcbed678dabbbe76ffc6e/"
+    private let weatherApi16DaysUrl = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
+    private let weatherApiUrl = "https://api.darksky.net/forecast/b38f6ad6d1efcbed678dabbbe76ffc6e/"
     
-    func get16DaysForecast(withLatitude lat:String, withLongitude long:String, completion: @escaping (Weather16DaysResponse) -> ()) {
+    func get16DaysForecast(with latitude:String, with longitude:String, completion: @escaping (Weather16DaysResponse) -> ()) {
         
-        let url = WEATHER_API_16_DAYS_URL + "&lat=" + lat + "&lon=" + long
+        let url = weatherApi16DaysUrl + "&lat=" + latitude + "&lon=" + longitude
         let request = URLRequest(url: URL(string: url)!)
         
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
@@ -30,9 +30,9 @@ class WeatherAPIClient {
         task.resume()
     }
     
-    func getForecast(withLocation location:String, completion: @escaping (WeatherResponse) -> ()) {
+    func getForecast(with location:String, completion: @escaping (WeatherResponse) -> ()) {
         
-        let url = WEATHER_API_URL + location
+        let url = weatherApiUrl + location
         let request = URLRequest(url: URL(string: url)!)
         
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in

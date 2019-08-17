@@ -267,7 +267,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="49X-eb-OAb" id="wgR-6K-Hae"/>
                         <outlet property="cloudCoverLabel" destination="I6x-Rj-pWa" id="JIw-NZ-gJ2"/>
-                        <outlet property="collView" destination="tjN-pm-Qh0" id="dzo-Dw-TTi"/>
+                        <outlet property="collectionView" destination="tjN-pm-Qh0" id="Eke-7z-wtA"/>
                         <outlet property="dateAndTimeLabel" destination="dzu-I3-43C" id="CFG-Wb-AOh"/>
                         <outlet property="degreeLabel" destination="rXa-t0-9Uw" id="vOD-rx-3nj"/>
                         <outlet property="highestTempOfTheDayLabel" destination="wEs-JW-mwh" id="1OB-bP-2Bw"/>

@@ -10,7 +10,7 @@ import Foundation
 
 protocol SixteenDaysViewModelProtocol {
     
-    func getForecast(lat:String, long:String, completion: @escaping () -> ())
+    func getForecast(latitude:String, longitude:String, completion: @escaping () -> ())
     func getLocation() -> String
     func getCount() -> Int
     func formatDate(timeStamp: Int) -> String
@@ -26,30 +26,19 @@ class SixteenDaysViewModel: SixteenDaysViewModelProtocol {
         self.apiClient = apiClient
     }
     
-    func getForecast(lat: String, long: String, completion: @escaping () -> ()) {
-        apiClient.get16DaysForecast(withLatitude: lat, withLongitude: long) { (weather16DaysResponse: Weather16DaysResponse) in
-            self.sixteenDaysForecastResponse = weather16DaysResponse
+    func getForecast(latitude: String, longitude: String, completion: @escaping () -> Void) {
+        apiClient.get16DaysForecast(with: latitude, with: longitude) { [weak self] (weather16DaysResponse: Weather16DaysResponse) in
+            self?.sixteenDaysForecastResponse = weather16DaysResponse
             completion()
         }
     }
-    
-   /* func getForecast(lat:String, long:String, completion: @escaping () -> ()) {
-        Weather16Days.get16DaysForecast(withLatitude: lat, withLongitude: long) { (weatherApiResponse:WeatherApiResponse) in
-            self.sixteenDaysForecastResponse = weatherApiResponse
-            completion()
-        }
-    }*/
     
     func getLocation() -> String {
         return self.sixteenDaysForecastResponse!.location
     }
     
     func getCount() -> Int {
-        if sixteenDaysForecastResponse != nil {
-            return sixteenDaysForecastResponse!.data.count
-        } else {
-            return 0
-        }
+        return sixteenDaysForecastResponse?.data.count ?? 0
     }
     
     func formatDate(timeStamp: Int) -> String {

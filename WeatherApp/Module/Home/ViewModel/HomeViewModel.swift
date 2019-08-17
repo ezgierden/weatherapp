@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HomeViewModelProtocol {
+protocol HomeViewModelProtocol: AnyObject {
     
     func formatDate(date:Date) -> String
     func formatDateToHour(date:Date) -> String
@@ -37,9 +37,9 @@ class HomeViewModel: HomeViewModelProtocol {
         self.apiClient = apiClient
     }
     
-    func getForecast(location: String, completion: @escaping () -> ()){
-        apiClient.getForecast (withLocation: location) { (weatherResponse: WeatherResponse) in
-            self.forecastResponse = weatherResponse
+    func getForecast(location: String, completion: @escaping () -> Void){
+        apiClient.getForecast (with: location) { [weak self] (weatherResponse: WeatherResponse) in
+            self?.forecastResponse = weatherResponse
             completion()
         }
     }
