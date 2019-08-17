@@ -109,10 +109,6 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func getHourlyCount() -> Int {
-        if forecastResponse != nil {
-            return forecastResponse!.hourlyWeather.data.count
-        } else {
-            return 0
-        }
+        return forecastResponse?.hourlyWeather.data.count ?? 0
     }
 }
