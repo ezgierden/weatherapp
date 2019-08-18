@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WeatherAPIClient {
+class WeatherAPIClient: WeatherAPIClientProtocol {
     
     private let weatherApi16DaysUrl = "https://api.weatherbit.io/v2.0/forecast/daily?key=fd7e5b1fdf024c4c802025ddbe08dec0"
     private let weatherApiUrl = "https://api.darksky.net/forecast/b38f6ad6d1efcbed678dabbbe76ffc6e/"

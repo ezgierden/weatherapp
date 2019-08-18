@@ -31,9 +31,9 @@ protocol HomeViewModelProtocol: AnyObject {
 class HomeViewModel: HomeViewModelProtocol {
     
     private var forecastResponse: WeatherResponse?
-    private var apiClient: WeatherAPIClient
+    private var apiClient: WeatherAPIClientProtocol
     
-    init(apiClient: WeatherAPIClient) {
+    init(apiClient: WeatherAPIClientProtocol) {
         self.apiClient = apiClient
     }
     
