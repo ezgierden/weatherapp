@@ -45,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherForHoursOfTheDayCollectionViewCell.swift; path = ../../../WeatherForHoursOfTheDayCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B1AB6C122D4BF4300BC56C5 /* WeatherForHoursOfTheDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherForHoursOfTheDayCollectionViewCell.swift; path = Cell/WeatherForHoursOfTheDayCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B1F495A22F8B17B00B036CF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		3B2A39BE2309B75000E212BD /* WeatherAPIClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClientProtocol.swift; sourceTree = "<group>"; };
 		3B412ABE22F9B2DF006AA778 /* SixteenDaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixteenDaysViewModel.swift; sourceTree = "<group>"; };

@@ -28,7 +28,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setupUI()
+        //setupUI()
         
         viewModel.getForecast(location: "42.3601,-71.0589") {
             
