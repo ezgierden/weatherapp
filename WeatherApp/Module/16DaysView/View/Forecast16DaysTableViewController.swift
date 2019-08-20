@@ -13,23 +13,23 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
     @IBOutlet weak var forecast16DaysTableView: UITableView!
     @IBOutlet weak var locationLabel: UILabel!
     
-    var sixteenDaysViewModel:SixteenDaysViewModelProtocol = SixteenDaysViewModel(apiClient: WeatherAPIClient())
+    var sixteenDaysViewModel = SixteenDaysViewModel(apiClient: WeatherAPIClient())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sixteenDaysViewModel.getForecast(latitude:"42.3601", longitude:"-71.0589") {
-            
-            DispatchQueue.main.async {
-                self.setData()
-            }
-        }
+        bindViewModel()
+        sixteenDaysViewModel.getForecast(latitude:"42.3601", longitude:"-71.0589")
     }
     
-    private func setData() {
-        self.forecast16DaysTableView?.reloadData()
-        self.locationLabel.text = self.sixteenDaysViewModel.getLocation()
+    private func bindViewModel(){
+        sixteenDaysViewModel.sixteenDaysForecastResponse.bind(to: self) { strongSelf, response in
+            strongSelf.forecast16DaysTableView?.reloadData()
+            strongSelf.locationLabel.text = response?.location
+        }
+        
     }
+   
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = false
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

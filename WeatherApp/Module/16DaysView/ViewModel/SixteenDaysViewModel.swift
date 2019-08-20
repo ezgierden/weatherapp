@@ -7,38 +7,26 @@
 //
 
 import Foundation
+import Bond
 
-protocol SixteenDaysViewModelProtocol {
+class SixteenDaysViewModel {
     
-    func getForecast(latitude:String, longitude:String, completion: @escaping () -> ())
-    func getLocation() -> String
-    func getCount() -> Int
-    func formatDate(timeStamp: Int) -> String
-    func getWeatherAtIndex(index: Int) -> SixteenDaysWeather
-}
-
-class SixteenDaysViewModel: SixteenDaysViewModelProtocol {
-    
-    private var sixteenDaysForecastResponse: Weather16DaysResponse?
+    let sixteenDaysForecastResponse = Observable<Weather16DaysResponse?>(nil)
     private var apiClient: WeatherAPIClient
     
     init(apiClient: WeatherAPIClient) {
         self.apiClient = apiClient
     }
     
-    func getForecast(latitude: String, longitude: String, completion: @escaping () -> Void) {
+    func getForecast(latitude: String, longitude: String) {
         apiClient.get16DaysForecast(with: latitude, with: longitude) { [weak self] (weather16DaysResponse: Weather16DaysResponse) in
-            self?.sixteenDaysForecastResponse = weather16DaysResponse
-            completion()
+            self?.sixteenDaysForecastResponse.value = weather16DaysResponse
         }
     }
     
-    func getLocation() -> String {
-        return self.sixteenDaysForecastResponse!.location
-    }
     
     func getCount() -> Int {
-        return sixteenDaysForecastResponse?.data.count ?? 0
+        return sixteenDaysForecastResponse.value?.data.count ?? 0
     }
     
     func formatDate(timeStamp: Int) -> String {
@@ -50,6 +38,6 @@ class SixteenDaysViewModel: SixteenDaysViewModelProtocol {
     }
     
     func getWeatherAtIndex(index:Int) -> SixteenDaysWeather {
-        return sixteenDaysForecastResponse!.data[index]
+        return sixteenDaysForecastResponse.value!.data[index]
     }
 }
