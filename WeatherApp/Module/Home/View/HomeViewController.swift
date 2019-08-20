@@ -38,8 +38,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the Navigation Bar
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     private func setupUI() {
-        let collectionViewFirstline = UIView(frame: CGRect(x: 10, y: 520, width: 400, height: 1.0))
+        /*let collectionViewFirstline = UIView(frame: CGRect(x: 10, y: 520, width: 400, height: 1.0))
         collectionViewFirstline.layer.borderWidth = 1.0
         collectionViewFirstline.layer.borderColor = UIColor.white.cgColor
         self.view.addSubview(collectionViewFirstline)
@@ -52,7 +59,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         let bottomLine = UIView(frame: CGRect(x: 10, y: 780, width: 400, height: 1.0))
         bottomLine.layer.borderWidth = 1.0
         bottomLine.layer.borderColor = UIColor.white.cgColor
-        self.view.addSubview(bottomLine)
+        self.view.addSubview(bottomLine)*/
+        
+        
     }
     
     private func setData() {
