@@ -33,14 +33,16 @@ class HomeViewModel {
     
     private var apiClient: WeatherAPIClient
     let forecastResponse = Observable<WeatherResponse?>(nil)
-    
-    
+    let isLoading = Observable<Bool>(true)
+
     init(apiClient: WeatherAPIClient) {
         self.apiClient = apiClient
     }
     
     func getForecast(location: String){
+        isLoading.value = true
         apiClient.getForecast(with: location) { [weak self] (weatherResponse: WeatherResponse) in
+            self?.isLoading.value = false
             self?.forecastResponse.value = weatherResponse
         }
     }
@@ -62,7 +64,7 @@ class HomeViewModel {
     }
     
     func getLocation() -> String {
-        return "Boston, MA"
+        return "London"
     }
     
     func formatBackgroundImageName(iconName: String) -> String {

@@ -30,8 +30,19 @@ struct SixteenDaysWeather: Decodable {
 }
 
 extension SixteenDaysWeather{
-    func getFormattedMaxTemp() -> String {
-        return String(Int(maxTemp))
+    var formattedMaxTemp:String {
+        return String(Int(maxTemp)) + "°"
+    }
+    var formattedMinTemp:String {
+        return String(Int(minTemp)) + "°"
+    }
+    
+    var dateAsString: String {
+        let date = Date(timeIntervalSince1970: Double(timeStamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "MMMM, dd"
+        return dateFormatter.string(from: date)
     }
 }
 
@@ -39,4 +50,9 @@ struct WeatherCode: Decodable {
     let code: Int
 }
 
-
+extension WeatherCode{
+    var codeAsString:String {
+        return String(code)
+    }
+    
+}

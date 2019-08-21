@@ -34,14 +34,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nho-ri-HCU">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
-                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="49X-eb-OAb" userLabel="Background">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weatherapp logo transparent.001" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zhr-tK-bbe">
-                                <rect key="frame" x="111" y="94.499999999999986" width="192" height="107.00000000000004"/>
+                                <rect key="frame" x="111" y="94.5" width="192" height="107"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zhr-tK-bbe" secondAttribute="height" multiplier="192:107" id="win-uR-1cE"/>
                                 </constraints>
@@ -111,7 +108,7 @@
                                 <rect key="frame" x="20" y="493" width="374" height="47"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="July, 27" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-I3-43C">
-                                        <rect key="frame" x="20" y="13.5" width="102.5" height="20.5"/>
+                                        <rect key="frame" x="10" y="13.5" width="102.5" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dzu-I3-43C" secondAttribute="height" multiplier="5:1" id="35B-YK-7xQ"/>
                                         </constraints>
@@ -140,7 +137,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="dzu-I3-43C" firstAttribute="leading" secondItem="rxC-1V-hHP" secondAttribute="leading" constant="20" id="9ku-7d-cQ1"/>
+                                    <constraint firstItem="dzu-I3-43C" firstAttribute="leading" secondItem="rxC-1V-hHP" secondAttribute="leading" constant="10" id="9ku-7d-cQ1"/>
                                     <constraint firstItem="wEs-JW-mwh" firstAttribute="centerY" secondItem="rxC-1V-hHP" secondAttribute="centerY" id="BJS-Qm-qbc"/>
                                     <constraint firstAttribute="width" secondItem="rxC-1V-hHP" secondAttribute="height" multiplier="374:47" id="Deo-cQ-bQV"/>
                                     <constraint firstItem="dzu-I3-43C" firstAttribute="centerY" secondItem="rxC-1V-hHP" secondAttribute="centerY" id="EQt-6m-Dxy"/>
@@ -309,13 +306,16 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black line.001" translatesAutoresizingMaskIntoConstraints="NO" id="QvR-CZ-EFi" userLabel="Line Above Collection View">
-                                <rect key="frame" x="10" y="541" width="394" height="1"/>
+                                <rect key="frame" x="10" y="526" width="394" height="16"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black line.001" translatesAutoresizingMaskIntoConstraints="NO" id="Xdl-YL-6nR" userLabel="Line Below Collection View">
-                                <rect key="frame" x="10" y="695.5" width="394" height="1"/>
+                                <rect key="frame" x="10" y="680.5" width="394" height="16"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black line.001" translatesAutoresizingMaskIntoConstraints="NO" id="hF5-CG-Zo1" userLabel="Line Below Current Values">
-                                <rect key="frame" x="10" y="828.5" width="394" height="1"/>
+                                <rect key="frame" x="10" y="828.5" width="394" height="16"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading screen" translatesAutoresizingMaskIntoConstraints="NO" id="qug-58-lii" userLabel="Loading Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -337,18 +337,19 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nA0-Tk-OBK" secondAttribute="trailing" constant="20" id="RaB-FS-1z0"/>
                             <constraint firstAttribute="trailing" secondItem="hF5-CG-Zo1" secondAttribute="trailing" constant="10" id="SBh-f3-VGa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="49X-eb-OAb" secondAttribute="trailing" id="Wvg-A1-gSr"/>
+                            <constraint firstItem="qug-58-lii" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="52" id="XCo-Zy-zsA"/>
                             <constraint firstItem="I6P-Yt-d7t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XLB-Zt-Znd"/>
                             <constraint firstItem="QvR-CZ-EFi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="XSs-a6-PQy"/>
                             <constraint firstItem="hF5-CG-Zo1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Y8a-We-Lxx"/>
                             <constraint firstItem="nA0-Tk-OBK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="13" id="ZA5-1D-VY7"/>
+                            <constraint firstItem="qug-58-lii" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aYb-2d-otX"/>
                             <constraint firstItem="QvR-CZ-EFi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cP2-j2-RWV"/>
                             <constraint firstItem="rxC-1V-hHP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ek6-nJ-4Hm"/>
                             <constraint firstItem="q5i-sK-TKm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ewW-hz-NTe"/>
                             <constraint firstItem="49X-eb-OAb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gqp-ZQ-iyf"/>
+                            <constraint firstItem="qug-58-lii" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h38-b1-2Dr"/>
                             <constraint firstItem="qBm-rs-uFx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="iGz-Kq-QNg"/>
-                            <constraint firstItem="nho-ri-HCU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jHC-zI-qG1"/>
                             <constraint firstItem="49X-eb-OAb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jms-jT-ggf"/>
-                            <constraint firstItem="nho-ri-HCU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lZT-Qs-nLB"/>
                             <constraint firstItem="q5i-sK-TKm" firstAttribute="top" secondItem="rxC-1V-hHP" secondAttribute="bottom" constant="8" id="o6y-4Q-AAo"/>
                             <constraint firstItem="q5i-sK-TKm" firstAttribute="top" secondItem="QvR-CZ-EFi" secondAttribute="bottom" constant="6" id="oQh-Us-u1Y"/>
                             <constraint firstItem="nA0-Tk-OBK" firstAttribute="top" secondItem="qBm-rs-uFx" secondAttribute="bottom" constant="8.5" id="oUd-wM-1hj"/>
@@ -361,8 +362,10 @@
                             <constraint firstItem="hF5-CG-Zo1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="wC3-zr-ooW"/>
                             <constraint firstAttribute="trailing" secondItem="I6P-Yt-d7t" secondAttribute="trailing" id="wri-9g-OBa"/>
                             <constraint firstItem="zhr-tK-bbe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xeF-vl-GB5"/>
+                            <constraint firstAttribute="bottom" secondItem="qug-58-lii" secondAttribute="bottom" id="y4T-wK-gRe"/>
                             <constraint firstItem="q5i-sK-TKm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yif-Ku-7G3"/>
                             <constraint firstItem="zhr-tK-bbe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="111" id="ypL-nJ-A4m"/>
+                            <constraint firstItem="qug-58-lii" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zah-Bt-58h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -376,6 +379,7 @@
                         <outlet property="degreeLabel" destination="rXa-t0-9Uw" id="vOD-rx-3nj"/>
                         <outlet property="highestTempOfTheDayLabel" destination="wEs-JW-mwh" id="1OB-bP-2Bw"/>
                         <outlet property="humidityLabel" destination="Vi2-N2-A4V" id="UT1-F4-SeA"/>
+                        <outlet property="loadingImageView" destination="qug-58-lii" id="KGz-1R-QPJ"/>
                         <outlet property="locationLabel" destination="3uP-fo-PaG" id="yw6-SA-Z2I"/>
                         <outlet property="lowestTempOfTheDayLabel" destination="m9K-gv-wNC" id="lxD-iJ-rsh"/>
                         <outlet property="summaryLabel" destination="6xn-7a-I14" id="EJN-Cb-ht8"/>
@@ -513,6 +517,7 @@
     </scenes>
     <resources>
         <image name="200" width="368" height="160"/>
+        <image name="Loading screen" width="750" height="1334"/>
         <image name="black line.001" width="298" height="1"/>
         <image name="location icon" width="50" height="50"/>
         <image name="weatherapp logo transparent.001" width="192" height="107"/>

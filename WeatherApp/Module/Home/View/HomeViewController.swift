@@ -22,6 +22,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingImageView: UIImageView!
+    
     
     var viewModel = HomeViewModel(apiClient: WeatherAPIClient())
     
@@ -54,6 +56,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
             
             strongSelf.backgroundImageView.image = UIImage(named: strongSelf.viewModel.formatBackgroundImageName(iconName: (response?.currentWeather.icon)!) )
         }
+        
+        viewModel.isLoading.bind(to: self) { strongSelf, isLoading in
+            if isLoading == false {
+                strongSelf.loadingImageView.isHidden = true
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

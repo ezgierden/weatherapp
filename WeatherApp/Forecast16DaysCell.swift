@@ -28,4 +28,10 @@ class Forecast16DaysCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func setup(with weather: SixteenDaysWeather) {
+        dateCellLabel.text = weather.dateAsString
+        maxTempCellLabel.text = weather.formattedMaxTemp
+        minTempCellLabel.text = weather.formattedMinTemp
+        cellBackgroundImageView.image = UIImage(named: weather.weatherCode.codeAsString)
+    }
 }
