@@ -35,11 +35,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         viewModel.forecastResponse.bind(to: self) { strongSelf, response in
             strongSelf.collectionView?.reloadData()
             
+            if response == nil{
+                return
+            }
+            
             strongSelf.locationLabel.text = strongSelf.viewModel.getLocation()
             strongSelf.summaryLabel.text = response?.currentWeather.summary
             strongSelf.degreeLabel.text = response?.currentWeather.getFormattedTemp()
             
-            strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: response?.dailyWeather.data[0].getFormattedTimeStamp())
+            strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: (response?.dailyWeather.data[0].getFormattedTimeStamp())!)
             strongSelf.highestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMaxTemp()
             strongSelf.lowestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMinTemp()
             
