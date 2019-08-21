@@ -12,17 +12,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var highestTempOfTheDayLabel: UILabel!
     @IBOutlet weak var lowestTempOfTheDayLabel: UILabel!
-    @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var degreeLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var cloudCoverLabel: UILabel!
     @IBOutlet weak var visibilityLabel: UILabel!
+    
+    @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var loadingImageView: UIImageView!
+    
     
     
     var viewModel = HomeViewModel(apiClient: WeatherAPIClient())
@@ -30,39 +33,65 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-        viewModel.getForecast(location:"42.3601,-71.0589")
+        viewModel.getForecast(location:"51.509865,-0.118092")
     }
     
     private func bindViewModel(){
-        viewModel.forecastResponse.bind(to: self) { strongSelf, response in
+        viewModel.hourlyList.bind(to: self) {strongSelf, hourlyList in
             strongSelf.collectionView?.reloadData()
-            
-            if response == nil{
-                return
-            }
-            
-            strongSelf.locationLabel.text = strongSelf.viewModel.getLocation()
-            strongSelf.summaryLabel.text = response?.currentWeather.summary
-            strongSelf.degreeLabel.text = response?.currentWeather.getFormattedTemp()
-            
-            strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: (response?.dailyWeather.data[0].getFormattedTimeStamp())!)
-            strongSelf.highestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMaxTemp()
-            strongSelf.lowestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMinTemp()
-            
-            strongSelf.humidityLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.humidity)!)
-            strongSelf.windSpeedLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.windSpeed)!)
-            strongSelf.cloudCoverLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.cloudCover)!)
-            strongSelf.visibilityLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.visibility)!)
-            
-            strongSelf.backgroundImageView.image = UIImage(named: strongSelf.viewModel.formatBackgroundImageName(iconName: (response?.currentWeather.icon)!) )
         }
+        viewModel.maxTemp.bind(to: self) { strongSelf, maxTemp in
+            strongSelf.highestTempOfTheDayLabel.text = maxTemp
+        }
+        viewModel.minTemp.bind(to: self) { strongSelf, minTemp in
+            strongSelf.lowestTempOfTheDayLabel.text = minTemp
+        }
+        viewModel.summary.bind(to: self) { strongSelf, summary in
+            strongSelf.summaryLabel.text = summary
+        }
+        viewModel.temperature.bind(to: self) { strongSelf, temperature in
+            strongSelf.degreeLabel.text = temperature
+        }
+        viewModel.humidity.bind(to: self) { strongSelf, humidity in
+            strongSelf.humidityLabel.text = humidity
+        }
+        viewModel.windSpeed.bind(to: self) { strongSelf, windSpeed in
+            strongSelf.windSpeedLabel.text = windSpeed
+        }
+        viewModel.cloudCover.bind(to: self) { strongSelf, cloudCover in
+            strongSelf.cloudCoverLabel.text = cloudCover
+        }
+        viewModel.visibility.bind(to: self) { strongSelf, visibility in
+            strongSelf.visibilityLabel.text = visibility
+        }
+        
+        //  viewModel.forecastResponse.bind(to: self) { strongSelf, response in
+        //    strongSelf.collectionView?.reloadData()
+        
+        // guard let response = response else {return} bind oldugu yerde in'den sonraki ilk satir
+        
+        
+        /*   strongSelf.locationLabel.text = strongSelf.viewModel.getLocation()
+         strongSelf.summaryLabel.text = response?.currentWeather.summary
+         strongSelf.degreeLabel.text = response?.currentWeather.getFormattedTemp()
+         
+         strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: (response?.dailyWeather.data[0].getFormattedTimeStamp())!)
+         strongSelf.highestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMaxTemp()
+         strongSelf.lowestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMinTemp()
+         
+         strongSelf.humidityLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.humidity)!)
+         strongSelf.windSpeedLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.windSpeed)!)
+         strongSelf.cloudCoverLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.cloudCover)!)
+         strongSelf.visibilityLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.visibility)!)
+         
+         strongSelf.backgroundImageView.image = UIImage(named: strongSelf.viewModel.formatBackgroundImageName(iconName: (response?.currentWeather.icon)!) )*/
+        
         
         viewModel.isLoading.bind(to: self) { strongSelf, isLoading in
             if isLoading == false {
                 strongSelf.loadingImageView.isHidden = true
             }
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,22 +105,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
-    /*private func setData() {
-     dateAndTimeLabel.text = viewModel.formatDate(date: viewModel.getCurrentDate())
-     humidityLabel.text = viewModel.getHumidity()
-     highestTempOfTheDayLabel.text = viewModel.getMaxTemp() + "°"
-     lowestTempOfTheDayLabel.text = viewModel.getMinTemp() + "°"
-     summaryLabel.text = viewModel.getSummary()
-     degreeLabel.text = viewModel.getDegree() + "°"
-     windSpeedLabel.text = viewModel.getWindSpeed()
-     cloudCoverLabel.text = viewModel.getCloudCover()
-     visibilityLabel.text = viewModel.getVisibility()
-     backgroundImageView.image = UIImage(named: viewModel.getBackgroundImageName())
-     locationLabel.text = viewModel.getLocation()
-     
-     collectionView?.reloadData()
-     }*/
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.getHourlyCount()

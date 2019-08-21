@@ -19,7 +19,7 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-        sixteenDaysViewModel.getForecast(latitude:"42.3601", longitude:"-71.0589")
+        sixteenDaysViewModel.getForecast(latitude:"51.509865", longitude:"-0.118092")
     }
     
     private func bindViewModel(){

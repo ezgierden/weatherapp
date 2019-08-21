@@ -9,32 +9,23 @@
 import Foundation
 import Bond
 
-/*protocol HomeViewModelProtocol: AnyObject {
- 
- func formatDate(date:Date) -> String
- func formatDateToHour(date:Date) -> String
- func getForecast(location:String, completion: @escaping () -> ())
- func getHumidity() -> String
- func getMaxTemp() -> String
- func getMinTemp() -> String
- func getSummary() -> String
- func getDegree() -> String
- func getWindSpeed() -> String
- func getCloudCover() -> String
- func getVisibility() -> String
- func getCurrentDate() -> Date
- func getLocation() -> String
- func getWeatherAtIndex(index: Int) -> HourlyData
- func getHourlyCount() -> Int
- func getBackgroundImageName() -> String
- }*/
-
 class HomeViewModel {
     
     private var apiClient: WeatherAPIClient
-    let forecastResponse = Observable<WeatherResponse?>(nil)
     let isLoading = Observable<Bool>(true)
-
+    let hourlyList = Observable<HourlyWeather?>(nil)
+    let time = Observable<Int?>(nil)
+    let humidity = Observable<String>("")
+    let cloudCover = Observable<String>("")
+    let windSpeed = Observable<String>("")
+    let visibility = Observable<String>("")
+    let temperature = Observable<String>("")
+    let summary = Observable<String>("")
+    let icon = Observable<String>("")
+    let timeStamp = Observable<Int?>(nil)
+    let maxTemp = Observable<String>("")
+    let minTemp = Observable<String>("")
+    
     init(apiClient: WeatherAPIClient) {
         self.apiClient = apiClient
     }
@@ -43,7 +34,21 @@ class HomeViewModel {
         isLoading.value = true
         apiClient.getForecast(with: location) { [weak self] (weatherResponse: WeatherResponse) in
             self?.isLoading.value = false
-            self?.forecastResponse.value = weatherResponse
+            
+            self?.hourlyList.value = weatherResponse.hourlyWeather
+            
+            self?.time.value = weatherResponse.currentWeather.time
+            self?.humidity.value = String(weatherResponse.currentWeather.humidity)
+            self?.cloudCover.value = String(weatherResponse.currentWeather.cloudCover)
+            self?.windSpeed.value = String(weatherResponse.currentWeather.windSpeed)
+            self?.visibility.value = String(weatherResponse.currentWeather.visibility)
+            self?.temperature.value = String(weatherResponse.currentWeather.temperature)
+            self?.summary.value = String(weatherResponse.currentWeather.summary)
+            self?.icon.value = weatherResponse.currentWeather.icon
+            
+            self?.timeStamp.value = weatherResponse.dailyWeather.data[0].timeStamp
+            self?.maxTemp.value = String(weatherResponse.dailyWeather.data[0].maxTemp)
+            self?.minTemp.value = String(weatherResponse.dailyWeather.data[0].minTemp)
         }
     }
     
@@ -72,11 +77,11 @@ class HomeViewModel {
     }
     
     func getWeatherAtIndex(index: Int) -> HourlyData {
-        return forecastResponse.value!.hourlyWeather.data[index]
+        return hourlyList.value!.data[index]
     }
     
     func getHourlyCount() -> Int {
-        return forecastResponse.value?.hourlyWeather.data.count ?? 0
+        return hourlyList.value?.data.count ?? 0
     }
     
     func formatIntToString(int:Int) -> String {
@@ -88,48 +93,4 @@ class HomeViewModel {
     }
 
 }
-
-
-
-/* func getHumidity() -> String {
- return String(self.forecastResponse!.currentWeather.humidity)
- }
- 
- func getMaxTemp() -> String {
- return String(self.forecastResponse!.dailyWeather.data[0].getFormattedMaxTemp())
- }
- 
- func getMinTemp() -> String {
- return String(self.forecastResponse!.dailyWeather.data[0].getFormattedMinTemp())
- }
- 
- func getSummary() -> String {
- return String(self.forecastResponse!.currentWeather.summary)
- }
- 
- func getDegree() -> String {
- return String(self.forecastResponse!.currentWeather.getFormattedTemp())
- }
- 
- func getWindSpeed() -> String {
- return String(self.forecastResponse!.currentWeather.windSpeed)
- }
- 
- func getCloudCover() -> String {
- return String(self.forecastResponse!.currentWeather.cloudCover)
- }
- 
- func getVisibility() -> String {
- return String(self.forecastResponse!.currentWeather.visibility)
- }
- 
- func getCurrentDate() -> Date {
- return self.forecastResponse!.dailyWeather.data[0].getFormattedTimeStamp()
- }
- 
- 
- func getBackgroundImageName() -> String {
- return forecastResponse!.currentWeather.icon + "BG"
- }*/
-
 
