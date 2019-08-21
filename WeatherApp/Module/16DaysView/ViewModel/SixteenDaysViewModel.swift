@@ -11,19 +11,21 @@ import Bond
 
 class SixteenDaysViewModel {
     
-    let sixteenDaysForecastResponse = Observable<Weather16DaysResponse?>(nil)
     private var apiClient: WeatherAPIClient
+    let sixteenDaysForecastResponse = Observable<Weather16DaysResponse?>(nil)
+    let isLoading = Observable<Bool>(false)
     
     init(apiClient: WeatherAPIClient) {
         self.apiClient = apiClient
     }
     
     func getForecast(latitude: String, longitude: String) {
+        isLoading.value = true
         apiClient.get16DaysForecast(with: latitude, with: longitude) { [weak self] (weather16DaysResponse: Weather16DaysResponse) in
+            self?.isLoading.value = false
             self?.sixteenDaysForecastResponse.value = weather16DaysResponse
         }
     }
-    
     
     func getCount() -> Int {
         return sixteenDaysForecastResponse.value?.data.count ?? 0

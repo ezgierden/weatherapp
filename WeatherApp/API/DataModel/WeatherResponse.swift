@@ -30,8 +30,9 @@ struct CurrentWeather: Decodable {
 }
 
 extension CurrentWeather {
+    
     func getFormattedTemp() -> String {
-        return String(Int((temperature - 32) / 1.8))
+        return String(Int((temperature - 32) / 1.8)) + "°"
     }
 }
 
@@ -55,10 +56,10 @@ struct DailyData: Decodable {
 
 extension DailyData{
     func getFormattedMaxTemp() -> String {
-        return String(Int((maxTemp - 32) / 1.8))
+        return String(Int((maxTemp - 32) / 1.8)) + "°"
     }
     func getFormattedMinTemp() -> String {
-        return String(Int((minTemp - 32) / 1.8))
+        return String(Int((minTemp - 32) / 1.8)) + "°"
     }
     func getFormattedTimeStamp() -> Date{
         return Date(timeIntervalSince1970: Double(timeStamp))

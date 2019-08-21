@@ -34,6 +34,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nho-ri-HCU">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="49X-eb-OAb" userLabel="Background">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
@@ -327,7 +330,9 @@
                             <constraint firstItem="q5i-sK-TKm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ewW-hz-NTe"/>
                             <constraint firstItem="49X-eb-OAb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gqp-ZQ-iyf"/>
                             <constraint firstItem="qBm-rs-uFx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="iGz-Kq-QNg"/>
+                            <constraint firstItem="nho-ri-HCU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jHC-zI-qG1"/>
                             <constraint firstItem="49X-eb-OAb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jms-jT-ggf"/>
+                            <constraint firstItem="nho-ri-HCU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lZT-Qs-nLB"/>
                             <constraint firstItem="q5i-sK-TKm" firstAttribute="top" secondItem="rxC-1V-hHP" secondAttribute="bottom" constant="8" id="o6y-4Q-AAo"/>
                             <constraint firstItem="nA0-Tk-OBK" firstAttribute="top" secondItem="qBm-rs-uFx" secondAttribute="bottom" constant="8.5" id="oUd-wM-1hj"/>
                             <constraint firstItem="qBm-rs-uFx" firstAttribute="top" secondItem="q5i-sK-TKm" secondAttribute="bottom" constant="15" id="q67-wS-rJ8"/>
@@ -450,6 +455,10 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-tZ-AGd">
+                                <rect key="frame" x="197" y="144" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -471,6 +480,7 @@
                         <viewLayoutGuide key="safeArea" id="zqy-nv-9wg"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="fzu-tZ-AGd" id="4Ao-p0-k7S"/>
                         <outlet property="forecast16DaysTableView" destination="WzT-9c-iAm" id="z7J-4e-BG3"/>
                         <outlet property="locationLabel" destination="7h2-Vn-luZ" id="UBX-TZ-AiE"/>
                     </connections>

@@ -12,12 +12,12 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
     
     @IBOutlet weak var forecast16DaysTableView: UITableView!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var sixteenDaysViewModel = SixteenDaysViewModel(apiClient: WeatherAPIClient())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         bindViewModel()
         sixteenDaysViewModel.getForecast(latitude:"42.3601", longitude:"-71.0589")
     }
@@ -27,9 +27,16 @@ class Forecast16DaysTableViewController: UIViewController, UITableViewDataSource
             strongSelf.forecast16DaysTableView?.reloadData()
             strongSelf.locationLabel.text = response?.location
         }
+        sixteenDaysViewModel.isLoading.bind(to: self) { strongSelf, isLoading in
+            if isLoading == true {
+                strongSelf.activityIndicator.startAnimating()
+            } else {
+                strongSelf.activityIndicator.stopAnimating()
+            }
+        }
         
     }
-   
+    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = false
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
