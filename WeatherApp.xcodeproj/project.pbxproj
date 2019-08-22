@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		3B69071E22CF93890050D3CD /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69071D22CF93890050D3CD /* WeatherAppTests.swift */; };
 		3B69072922CF93890050D3CD /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69072822CF93890050D3CD /* WeatherAppUITests.swift */; };
 		3B6F06AE22EF2749007C0F5F /* Forecast16DaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F06AD22EF2748007C0F5F /* Forecast16DaysTableViewController.swift */; };
+		3B9AF658230EDFD9000C2D33 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9AF657230EDFD9000C2D33 /* logo.png */; };
 		3BDC137C23084CCF00B0BE99 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC137B23084CCF00B0BE99 /* HomeViewModelTest.swift */; };
 		5887356EA4BA7E23FD57F2E9 /* Pods_WeatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10735AC83F779FC6F6FD819D /* Pods_WeatherAppTests.framework */; };
 		8AA19BBE419CFCDDAD4EF069 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8C62FE74A8279BD7ADBADC3 /* Pods_WeatherApp.framework */; };
@@ -73,6 +74,7 @@
 		3B69072822CF93890050D3CD /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		3B69072A22CF93890050D3CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B6F06AD22EF2748007C0F5F /* Forecast16DaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast16DaysTableViewController.swift; sourceTree = "<group>"; };
+		3B9AF657230EDFD9000C2D33 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../Downloads/logo.png; sourceTree = "<group>"; };
 		3BDC137B23084CCF00B0BE99 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		55C45F5D41DD41C69DB87AE5 /* Pods-WeatherAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WeatherAppUITests/Pods-WeatherAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		64C74005E31ECFEBCE166221 /* Pods_WeatherAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +223,7 @@
 				3B69070F22CF93890050D3CD /* Assets.xcassets */,
 				3B69071122CF93890050D3CD /* LaunchScreen.storyboard */,
 				3B69071422CF93890050D3CD /* Info.plist */,
+				3B9AF657230EDFD9000C2D33 /* logo.png */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -299,7 +302,6 @@
 				8A2621738FB97B2C51445D5A /* Pods-WeatherAppUITests.debug.xcconfig */,
 				55C45F5D41DD41C69DB87AE5 /* Pods-WeatherAppUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -413,6 +415,7 @@
 			files = (
 				3B69071322CF93890050D3CD /* LaunchScreen.storyboard in Resources */,
 				3B69071022CF93890050D3CD /* Assets.xcassets in Resources */,
+				3B9AF658230EDFD9000C2D33 /* logo.png in Resources */,
 				3B69070E22CF93860050D3CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,6 +718,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2H8H8VB86;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -734,6 +738,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2H8H8VB86;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

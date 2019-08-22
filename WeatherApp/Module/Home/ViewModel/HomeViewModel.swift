@@ -22,7 +22,7 @@ class HomeViewModel {
     let temperature = Observable<String>("")
     let summary = Observable<String>("")
     let icon = Observable<String>("")
-    let timeStamp = Observable<Int?>(nil)
+    let date = Observable<Date?>(nil)
     let maxTemp = Observable<String>("")
     let minTemp = Observable<String>("")
     
@@ -42,13 +42,13 @@ class HomeViewModel {
             self?.cloudCover.value = String(weatherResponse.currentWeather.cloudCover)
             self?.windSpeed.value = String(weatherResponse.currentWeather.windSpeed)
             self?.visibility.value = String(weatherResponse.currentWeather.visibility)
-            self?.temperature.value = String(weatherResponse.currentWeather.temperature)
+            self?.temperature.value = weatherResponse.currentWeather.getFormattedTemp()
             self?.summary.value = String(weatherResponse.currentWeather.summary)
-            self?.icon.value = weatherResponse.currentWeather.icon
+            self?.icon.value = weatherResponse.currentWeather.icon + "BG"
             
-            self?.timeStamp.value = weatherResponse.dailyWeather.data[0].timeStamp
-            self?.maxTemp.value = String(weatherResponse.dailyWeather.data[0].maxTemp)
-            self?.minTemp.value = String(weatherResponse.dailyWeather.data[0].minTemp)
+            self?.date.value = weatherResponse.dailyWeather.data[0].getFormattedTimeStamp()
+            self?.maxTemp.value = weatherResponse.dailyWeather.data[0].getFormattedMaxTemp()
+            self?.minTemp.value = weatherResponse.dailyWeather.data[0].getFormattedMinTemp()
         }
     }
     
@@ -69,11 +69,8 @@ class HomeViewModel {
     }
     
     func getLocation() -> String {
-        return "London"
-    }
-    
-    func formatBackgroundImageName(iconName: String) -> String {
-        return iconName + "BG"
+        // TODO: Get it from the user
+        return "London, UK"
     }
     
     func getWeatherAtIndex(index: Int) -> HourlyData {

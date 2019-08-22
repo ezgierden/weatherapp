@@ -34,6 +34,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
         bindViewModel()
         viewModel.getForecast(location:"51.509865,-0.118092")
+        locationLabel.text = viewModel.getLocation()
     }
     
     private func bindViewModel(){
@@ -63,6 +64,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         }
         viewModel.visibility.bind(to: self) { strongSelf, visibility in
             strongSelf.visibilityLabel.text = visibility
+        }
+        viewModel.icon.bind(to: self) { strongSelf, icon in
+            strongSelf.backgroundImageView.image = UIImage(named: icon)
+        }
+        viewModel.date.bind(to: self) { strongSelf, date in
+            guard let date = date else {return}
+            strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: date)
         }
         
         //  viewModel.forecastResponse.bind(to: self) { strongSelf, response in
