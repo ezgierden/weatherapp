@@ -31,7 +31,7 @@ struct CurrentWeather: Decodable {
 
 extension CurrentWeather {
     
-    func getFormattedTemp() -> String {
+    var formattedTemp: String {
         return String(Int((temperature - 32) / 1.8)) + "°"
     }
 }
@@ -55,13 +55,13 @@ struct DailyData: Decodable {
 }
 
 extension DailyData{
-    func getFormattedMaxTemp() -> String {
+    var formattedMaxTemp: String {
         return String(Int((maxTemp - 32) / 1.8)) + "°"
     }
-    func getFormattedMinTemp() -> String {
+    var formattedMinTemp: String {
         return String(Int((minTemp - 32) / 1.8)) + "°"
     }
-    func getFormattedTimeStamp() -> Date{
+    var formattedTimeStamp: Date{
         return Date(timeIntervalSince1970: Double(timeStamp))
     }
 }
@@ -73,10 +73,16 @@ struct HourlyData: Decodable {
 }
 
 extension HourlyData {
-    func getFormattedTemperature() -> String {
-        return String(Int((temperature - 32) / 1.8))
+    var formattedTemperature: String {
+        return String(Int((temperature - 32) / 1.8)) + "°"
     }
-    func getFormattedTime() -> Date {
-        return Date(timeIntervalSince1970: Double(time))
+    
+    var formattedTime: String {
+        let date = Date(timeIntervalSince1970: Double(time))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT + 1")
+        dateFormatter.dateFormat = "HH"
+        let formattedDate = dateFormatter.string(from: date)
+        return formattedDate
     }
 }

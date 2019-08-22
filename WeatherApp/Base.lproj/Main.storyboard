@@ -169,7 +169,7 @@
                                                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="n0A-Fd-5O2" userLabel="CellView">
                                                             <rect key="frame" x="0.0" y="0.0" width="82" height="129"/>
                                                             <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-Cr-aNs" userLabel="timeCellLabel">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-Cr-aNs" userLabel="timeCellLabel">
                                                                     <rect key="frame" x="20" y="15" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="UgD-Cr-aNs" secondAttribute="height" multiplier="2:1" id="rEl-52-dF2"/>
@@ -535,7 +535,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="200" width="368" height="160"/>
+        <image name="200" width="750" height="1334"/>
         <image name="Loading screen" width="750" height="1334"/>
         <image name="black line.001" width="298" height="1"/>
         <image name="location icon" width="50" height="50"/>

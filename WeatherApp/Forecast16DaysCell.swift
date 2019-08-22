@@ -16,18 +16,6 @@ class Forecast16DaysCell: UITableViewCell {
     @IBOutlet weak var cellBackgroundImageView: UIImageView!
     @IBOutlet weak var cell: UITableViewCell!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     func setup(with weather: SixteenDaysWeather) {
         dateCellLabel.text = weather.dateAsString
         maxTempCellLabel.text = weather.formattedMaxTemp

@@ -14,4 +14,10 @@ class WeatherForHoursOfTheDayCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeCellLabel: UILabel!
     @IBOutlet weak var degreeCellLabel: UILabel!
     
+    func setup(with weather: HourlyData){
+        
+        degreeCellLabel.text = weather.formattedTemperature
+        timeCellLabel.text = weather.formattedTime
+        iconCellImageView.image = UIImage(named: weather.icon)
+    }
 }

@@ -73,28 +73,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
             strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: date)
         }
         
-        //  viewModel.forecastResponse.bind(to: self) { strongSelf, response in
-        //    strongSelf.collectionView?.reloadData()
-        
-        // guard let response = response else {return} bind oldugu yerde in'den sonraki ilk satir
-        
-        
-        /*   strongSelf.locationLabel.text = strongSelf.viewModel.getLocation()
-         strongSelf.summaryLabel.text = response?.currentWeather.summary
-         strongSelf.degreeLabel.text = response?.currentWeather.getFormattedTemp()
-         
-         strongSelf.dateAndTimeLabel.text = strongSelf.viewModel.formatDate(date: (response?.dailyWeather.data[0].getFormattedTimeStamp())!)
-         strongSelf.highestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMaxTemp()
-         strongSelf.lowestTempOfTheDayLabel.text = response?.dailyWeather.data[0].getFormattedMinTemp()
-         
-         strongSelf.humidityLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.humidity)!)
-         strongSelf.windSpeedLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.windSpeed)!)
-         strongSelf.cloudCoverLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.cloudCover)!)
-         strongSelf.visibilityLabel.text = strongSelf.viewModel.formatDoubleToString(double: (response?.currentWeather.visibility)!)
-         
-         strongSelf.backgroundImageView.image = UIImage(named: strongSelf.viewModel.formatBackgroundImageName(iconName: (response?.currentWeather.icon)!) )*/
-        
-        
         viewModel.isLoading.bind(to: self) { strongSelf, isLoading in
             if isLoading == false {
                 strongSelf.loadingImageView.isHidden = true
@@ -123,13 +101,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherForHoursOfTheDayCollectionViewCell", for: indexPath) as! WeatherForHoursOfTheDayCollectionViewCell
         
         let weatherAtIndex = viewModel.getWeatherAtIndex(index: indexPath.row)
-        
-        cell.degreeCellLabel.text = String(weatherAtIndex.getFormattedTemperature()) + "°"
-        
-        let time = viewModel.formatDateToHour(date: weatherAtIndex.getFormattedTime())
-        cell.timeCellLabel.text = time
-        
-        cell.iconCellImageView.image = UIImage(named: weatherAtIndex.icon)
+        cell.setup(with: weatherAtIndex)
         
         return cell
     }

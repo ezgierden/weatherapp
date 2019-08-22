@@ -13,7 +13,7 @@ class HomeViewModel {
     
     private var apiClient: WeatherAPIClient
     let isLoading = Observable<Bool>(true)
-    let hourlyList = Observable<HourlyWeather?>(nil)
+    let hourlyList = Observable<[HourlyData]>([])
     let time = Observable<Int?>(nil)
     let humidity = Observable<String>("")
     let cloudCover = Observable<String>("")
@@ -35,29 +35,21 @@ class HomeViewModel {
         apiClient.getForecast(with: location) { [weak self] (weatherResponse: WeatherResponse) in
             self?.isLoading.value = false
             
-            self?.hourlyList.value = weatherResponse.hourlyWeather
+            self?.hourlyList.value = Array(weatherResponse.hourlyWeather.data[0...23])
             
             self?.time.value = weatherResponse.currentWeather.time
             self?.humidity.value = String(weatherResponse.currentWeather.humidity)
             self?.cloudCover.value = String(weatherResponse.currentWeather.cloudCover)
             self?.windSpeed.value = String(weatherResponse.currentWeather.windSpeed)
             self?.visibility.value = String(weatherResponse.currentWeather.visibility)
-            self?.temperature.value = weatherResponse.currentWeather.getFormattedTemp()
+            self?.temperature.value = weatherResponse.currentWeather.formattedTemp
             self?.summary.value = String(weatherResponse.currentWeather.summary)
             self?.icon.value = weatherResponse.currentWeather.icon + "BG"
             
-            self?.date.value = weatherResponse.dailyWeather.data[0].getFormattedTimeStamp()
-            self?.maxTemp.value = weatherResponse.dailyWeather.data[0].getFormattedMaxTemp()
-            self?.minTemp.value = weatherResponse.dailyWeather.data[0].getFormattedMinTemp()
+            self?.date.value = weatherResponse.dailyWeather.data[0].formattedTimeStamp
+            self?.maxTemp.value = weatherResponse.dailyWeather.data[0].formattedMaxTemp
+            self?.minTemp.value = weatherResponse.dailyWeather.data[0].formattedMinTemp
         }
-    }
-    
-    func formatDateToHour(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        dateFormatter.dateFormat = "HH"
-        let formattedDate = dateFormatter.string(from: date)
-        return formattedDate
     }
     
     func formatDate(date: Date) -> String {
@@ -74,20 +66,11 @@ class HomeViewModel {
     }
     
     func getWeatherAtIndex(index: Int) -> HourlyData {
-        return hourlyList.value!.data[index]
+        return hourlyList.value[index]
     }
     
     func getHourlyCount() -> Int {
-        return hourlyList.value?.data.count ?? 0
+        return hourlyList.value.count
     }
-    
-    func formatIntToString(int:Int) -> String {
-        return String(int)
-    }
-    
-    func formatDoubleToString(double:Double) -> String {
-        return String(double)
-    }
-
 }
 
