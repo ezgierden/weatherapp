@@ -11,7 +11,7 @@ import Bond
 
 class HomeViewModel {
     
-    private var apiClient: WeatherAPIClient
+    private var apiClient: WeatherAPIClientProtocol
     let isLoading = Observable<Bool>(true)
     let hourlyList = Observable<[HourlyData]>([])
     let time = Observable<Int?>(nil)
@@ -26,7 +26,7 @@ class HomeViewModel {
     let maxTemp = Observable<String>("")
     let minTemp = Observable<String>("")
     
-    init(apiClient: WeatherAPIClient) {
+    init(apiClient: WeatherAPIClientProtocol) {
         self.apiClient = apiClient
     }
     

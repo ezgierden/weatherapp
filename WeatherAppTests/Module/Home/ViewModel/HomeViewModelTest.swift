@@ -30,7 +30,7 @@ class HomeViewModelTest: XCTestCase {
     }
     
     func testPageTitle() {
-        XCTAssertEqual("Boston, MA", viewModel.getLocation())
+        XCTAssertEqual("London, UK", viewModel.getLocation())
     }
     
     func testFormatDate() {
@@ -40,51 +40,43 @@ class HomeViewModelTest: XCTestCase {
         XCTAssertEqual(result, "July, 10")
     }
     
-    func testFormatDateToHour() {
-        let givenDate = Date(timeIntervalSince1970: TimeInterval(710777599))
-        let result = viewModel.formatDateToHour(date: givenDate)
-        
-        XCTAssertEqual(result, "14")
-    }
-    
-    func testGivenWeatherResponseIsSuccessful_whenGetHumidity_thenReturnsValidValue(){
+    func testGetWeatherAtIndex_givenHourlyList_returnsCorrectItem() {
         givenWeatherResponse()
         givenWeatherRequestIsMade()
+        let index = 2
+        let result = viewModel.getWeatherAtIndex(index: index)
         
-        //WHEN
+        let expectedTime = givenTime + 2
+        let expectedTemperature = givenTemparature + 2
         
-        let result = viewModel.getHumidity()
+        XCTAssertEqual(result.icon, givenIcon)
+        XCTAssertEqual(result.time, expectedTime)
+        XCTAssertEqual(result.temperature, expectedTemperature)
         
-        //THEN
-        
-        XCTAssertEqual(result, "12.5")
-    }
-    
-    func testGivenWeatherResponseIsSuccessfull_whenGetBackgroundImageName_thenReturnsValidValue() {
-        givenWeatherResponse ()
-        givenWeatherRequestIsMade()
-        
-        let result = viewModel.getBackgroundImageName()
-        
-        XCTAssertEqual(result, "some_iconBG")
     }
     
     //MARK: GIVEN
+    
     private func givenWeatherResponse() {
         let currentWeather = CurrentWeather(time: givenTime, humidity: givenHumidity, cloudCover: givenCloudCover, windSpeed: givenWindSpeed, visibility: givenVisibility, temperature: givenTemparature, summary: givenSummary, icon: givenIcon)
         
-        let hourlyWeather = HourlyWeather(data: [])
-        let dailyWeather = DailyWeather(data: [])
+        var hourlyWeatherList = [HourlyData]()
+        for index in 0...25{
+            hourlyWeatherList.append(HourlyData(time: givenTime + index, icon: givenIcon, temperature: givenTemparature + Double(index)))
+        }
+        
+        let hourlyWeather = HourlyWeather(data: hourlyWeatherList)
+        
+        var dailyWeatherList = [DailyData]()
+        dailyWeatherList.append(DailyData(timeStamp: givenTime, maxTemp: givenTemparature, minTemp: givenTemparature))
+        
+        let dailyWeather = DailyWeather(data: dailyWeatherList)
         
         let response = WeatherResponse(currentWeather: currentWeather, hourlyWeather: hourlyWeather, dailyWeather: dailyWeather)
         apiClient.givenWeatherResponse(weatherResponse: response)
     }
     
     private func givenWeatherRequestIsMade() {
-        viewModel.getForecast(location: "") {
-            // Ignore
-        }
+        viewModel.getForecast(location: "")
     }
-    
-    //MARK: WHEN
 }
