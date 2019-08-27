@@ -36,4 +36,6 @@ This project is still under-development. Therefore, this is a list of things to 
 
 ## Screenshots
 
+![ss1](https://github.com/ezgierden/weatherapp/blob/master/Art/Screenshot1.png)
+
 
