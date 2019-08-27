@@ -8,6 +8,7 @@ This is an application that retrives weather forecasts from two different APIs w
 - Dynamic background images related to current weather
 - Highest and lowest degrees
 - Other details such as humidity, wind speed, cloud cover and visibility
+- Works on all iPhone screen sizes
 
 
 I have developed this simple weather application project to improve my skillset on iOS. 
