@@ -32,7 +32,7 @@ class SixteenDaysViewModelTest: XCTestCase {
         givenWeatherRequestIsMade()
         
         let result = sixteenDaysViewModel.getCount()
-        XCTAssertEqual(result, 16)
+        XCTAssertEqual(result, 11)
     }
     
     func testGetWeatherAtIndex_givenWeatherList_returnsCorrectItem() {
@@ -48,6 +48,7 @@ class SixteenDaysViewModelTest: XCTestCase {
         XCTAssertEqual(result.timeStamp, expectedTimeStamp)
         XCTAssertEqual(result.temperature, expectedTemperature)
         XCTAssertEqual(result.maxTemp, givenMaxTemp)
+        XCTAssertEqual(result.weatherCode.code, 800)
     }
     
     //MARK: GIVEN
