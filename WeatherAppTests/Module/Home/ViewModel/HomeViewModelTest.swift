@@ -52,7 +52,12 @@ class HomeViewModelTest: XCTestCase {
         XCTAssertEqual(result.icon, givenIcon)
         XCTAssertEqual(result.time, expectedTime)
         XCTAssertEqual(result.temperature, expectedTemperature)
-        
+    }
+    
+    func testGetHourlyCount() {
+        givenWeatherResponse()
+        givenWeatherRequestIsMade()
+        XCTAssertEqual(24, viewModel.getHourlyCount())
     }
     
     //MARK: GIVEN

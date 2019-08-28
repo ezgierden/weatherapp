@@ -11,12 +11,12 @@ import Bond
 
 class SixteenDaysViewModel {
     
-    private var apiClient: WeatherAPIClient
+    private var apiClient: WeatherAPIClientProtocol
     let isLoading = Observable<Bool>(false)
     let location = Observable<String>("")
     let weatherList = Observable<[SixteenDaysWeather]>([])
     
-    init(apiClient: WeatherAPIClient) {
+    init(apiClient: WeatherAPIClientProtocol) {
         self.apiClient = apiClient
     }
     
